@@ -6,18 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yanzengyong.github.io">
-  <title>Tag: ES7 | Yzy的博客</title>
+  <title>Vue模仿微信支付的验证码输入方式 | Yzy的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="没任何描述">
-<meta name="keywords" content="前端, jquery, javascript, html5, Developer, vue, React, css3">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Yzy的博客">
-<meta property="og:url" content="http://yanzengyong.github.io/tags/ES7/index.html">
+  <meta name="description" content="前言&amp;nbsp;&amp;nbsp;昨天同事突然问我在网上看到的一篇“微信验证码输入方式的讲解和实现方式”是不是我写的，nonono，很显然不是我写的，因为目前我还没有在我博客之外发表过技术分享，不过这倒是给我提了一个醒，顺便把我之前写的一个类似的项目做一下小小的分享。 效果及做法需求输入5位短信验证码，输入完成后收起键盘并且验证是否通过 实现效果：">
+<meta name="keywords" content="vue,前端框架,css,验证码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue模仿微信支付的验证码输入方式">
+<meta property="og:url" content="http://yanzengyong.github.io/2017/12/15/模仿微信支付输入验证码/index.html">
 <meta property="og:site_name" content="Yzy的博客">
-<meta property="og:description" content="没任何描述">
+<meta property="og:description" content="前言&amp;nbsp;&amp;nbsp;昨天同事突然问我在网上看到的一篇“微信验证码输入方式的讲解和实现方式”是不是我写的，nonono，很显然不是我写的，因为目前我还没有在我博客之外发表过技术分享，不过这倒是给我提了一个醒，顺便把我之前写的一个类似的项目做一下小小的分享。 效果及做法需求输入5位短信验证码，输入完成后收起键盘并且验证是否通过 实现效果：">
+<meta property="og:image" content="http://yanzengyong.github.io/img/copyWechat.jpeg">
+<meta property="og:updated_time" content="2018-01-09T06:16:08.822Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yzy的博客">
-<meta name="twitter:description" content="没任何描述">
+<meta name="twitter:title" content="Vue模仿微信支付的验证码输入方式">
+<meta name="twitter:description" content="前言&amp;nbsp;&amp;nbsp;昨天同事突然问我在网上看到的一篇“微信验证码输入方式的讲解和实现方式”是不是我写的，nonono，很显然不是我写的，因为目前我还没有在我博客之外发表过技术分享，不过这倒是给我提了一个醒，顺便把我之前写的一个类似的项目做一下小小的分享。 效果及做法需求输入5位短信验证码，输入完成后收起键盘并且验证是否通过 实现效果：">
+<meta name="twitter:image" content="http://yanzengyong.github.io/img/copyWechat.jpeg">
   
     <link rel="alternative" href="/atom.xml" title="Yzy的博客" type="application/atom+xml">
   
@@ -150,64 +153,199 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-模仿微信支付输入验证码" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/19/async:await/" class="archive-article-date">
-  	<time datetime="2017-04-19T01:56:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-19</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/19/async:await/">异步的终极解决方案-ES7的Async/Await</a>
+    <h1 class="article-title" itemprop="name">
+      Vue模仿微信支付的验证码输入方式
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/12/15/模仿微信支付输入验证码/" class="archive-article-date">
+  	<time datetime="2017-12-15T02:48:25.590Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&nbsp;&nbsp;昨天同事突然问我在网上看到的一篇“微信验证码输入方式的讲解和实现方式”是不是我写的，nonono，很显然不是我写的，因为目前我还没有在我博客之外发表过技术分享，不过这倒是给我提了一个醒，顺便把我之前写的一个类似的项目做一下小小的分享。</p>
+<h2 id="效果及做法"><a href="#效果及做法" class="headerlink" title="效果及做法"></a>效果及做法</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>输入5位短信验证码，输入完成后收起键盘并且验证是否通过</p>
+<h3 id="实现效果："><a href="#实现效果：" class="headerlink" title="实现效果："></a>实现效果：</h3><p><img src="/img/copyWechat.jpeg" alt="效果图"><br><a id="more"></a></p>
+<h3 id="实现代码："><a href="#实现代码：" class="headerlink" title="实现代码："></a>实现代码：</h3><p>html部分如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"accumulation_bottom"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"accumulation_title"</span>&gt;</span>请输入您收到的验证码<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> @<span class="attr">click</span>=<span class="string">"enterPwd"</span> <span class="attr">class</span>=<span class="string">"accumulation_code"</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">input</span> <span class="attr">ref</span>=<span class="string">'Inp'</span> <span class="attr">v-model</span>=<span class="string">'mima'</span> @<span class="attr">keyup</span>=<span class="string">'PwdUp'</span> <span class="attr">type</span>=<span class="string">'tel'</span> <span class="attr">maxlength</span>=<span class="string">'5'</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;&#123;mima.slice(0, 1)&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;&#123;mima.slice(1, 2)&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;&#123;mima.slice(2, 3)&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;&#123;mima.slice(3, 4)&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;&#123;mima.slice(4, 5)&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">'countTime'</span> @<span class="attr">click</span>=<span class="string">'getCode'</span> <span class="attr">class</span>=<span class="string">"accumulation_getCode"</span>&gt;</span>&#123;&#123;codeCue&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else</span> <span class="attr">class</span>=<span class="string">"accumulation_getCodeing"</span>&gt;</span>&#123;&#123;codeCue&#125;&#125;（&#123;&#123;time&#125;&#125;）<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>css部分如下：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.accumulation_bottom</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">flex-direction</span>: column;</div><div class="line">  <span class="attribute">align-items</span>: center;</div><div class="line">  <span class="selector-class">.accumulation_title</span> &#123;</div><div class="line">    <span class="attribute">padding</span>: px2rem(<span class="number">20</span>) <span class="number">0</span>;</div><div class="line">    <span class="attribute">font-size</span>: px2rem(<span class="number">14</span>);</div><div class="line">    <span class="attribute">color</span>: <span class="number">#333</span>;</div><div class="line">    <span class="attribute">letter-spacing</span>: px2rem(-<span class="number">0.42</span>);</div><div class="line">    <span class="attribute">text-align</span>: center;</div><div class="line">  &#125;</div><div class="line">  <span class="selector-class">.accumulation_code</span> &#123;</div><div class="line">    <span class="attribute">height</span>: px2rem(<span class="number">50</span>);</div><div class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">    <span class="attribute">margin-bottom</span>: px2rem(<span class="number">43</span>);</div><div class="line">    <span class="attribute">position</span>: relative;</div><div class="line">    <span class="attribute">display</span>: flex;</div><div class="line">    <span class="attribute">align-items</span>: center;</div><div class="line">    <span class="attribute">justify-content</span>: space-between;</div><div class="line">    <span class="attribute">overflow</span>: hidden;</div><div class="line">    <span class="selector-tag">input</span> &#123;</div><div class="line">      <span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">      <span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">      <span class="attribute">position</span>: absolute;</div><div class="line">      <span class="attribute">border</span>: none;</div><div class="line">      <span class="attribute">opacity</span>: <span class="number">0</span>;</div><div class="line">      <span class="attribute">right</span>: <span class="number">1000%</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-tag">div</span> &#123;</div><div class="line">      <span class="attribute">background-color</span>: <span class="number">#f5f5f5</span>;</div><div class="line">      <span class="attribute">border</span>: px2rem(<span class="number">1</span>) solid <span class="number">#efefef</span>;</div><div class="line">      <span class="attribute">width</span>: px2rem(<span class="number">48</span>);</div><div class="line">      <span class="attribute">height</span>: px2rem(<span class="number">48</span>);</div><div class="line">      <span class="attribute">display</span>: flex;</div><div class="line">      <span class="attribute">justify-content</span>: center;</div><div class="line">      <span class="attribute">align-items</span>: center;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="selector-class">.accumulation_getCode</span> &#123;</div><div class="line">    <span class="attribute">font-size</span>: px2rem(<span class="number">13</span>);</div><div class="line">    <span class="attribute">color</span>: <span class="number">#0aa6a8</span>;</div><div class="line">    <span class="attribute">letter-spacing</span>: px2rem(-<span class="number">0.39</span>);</div><div class="line">    <span class="attribute">text-align</span>: center;</div><div class="line">    <span class="attribute">padding-bottom</span>: px2rem(<span class="number">25</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="selector-class">.accumulation_getCodeing</span> &#123;</div><div class="line">    <span class="attribute">font-size</span>: px2rem(<span class="number">13</span>);</div><div class="line">    <span class="attribute">color</span>: <span class="number">#999</span>;</div><div class="line">    <span class="attribute">letter-spacing</span>: px2rem(-<span class="number">0.39</span>);</div><div class="line">    <span class="attribute">text-align</span>: center;</div><div class="line">    <span class="attribute">padding-bottom</span>: px2rem(<span class="number">25</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>看到html和css部分，我想大家应该知道其中的奥秘了吧。</p>
+<p>首先，想要实现这个效果，我们必定是要用到input标签的，否则我们无法激活手机键盘。我们只需要真正的input标签隐藏掉，给他做一下假的input标签展示给大家就好了。那么肯定会有人问我们为什么要给隐藏掉的input标签一个绝对定位和right（无限大），我们目的就是避免input标签获取到焦点的时候看到光标从而印象美观；同时我们也要注意一下要给他的父盒子加上最关键的<code>overflow: hidden</code>，否则当你获取焦点的时候在某些手机上就会跳到一个真正input所在页面的位置，导致你看到的页面是个空白页；</p>
+<h3 id="接下来我们看一下关键的js部分"><a href="#接下来我们看一下关键的js部分" class="headerlink" title="接下来我们看一下关键的js部分"></a>接下来我们看一下关键的js部分</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">data () &#123;</div><div class="line"> <span class="keyword">return</span> &#123;</div><div class="line">   mima: <span class="string">''</span>,</div><div class="line">   mimaHand: <span class="literal">true</span></div><div class="line"> &#125;</div><div class="line">&#125;,</div><div class="line"><span class="comment">// 点击模拟的input框是获取焦点</span></div><div class="line">enterPwd () &#123;</div><div class="line">  <span class="keyword">let</span> Input = <span class="keyword">this</span>.$refs.Inp</div><div class="line">  Input.focus()</div><div class="line">&#125;,</div><div class="line"><span class="comment">// 收起键盘</span></div><div class="line">hideKeyboard () &#123;</div><div class="line">    <span class="comment">// 输入完成隐藏键盘</span></div><div class="line">    <span class="built_in">document</span>.activeElement.blur() <span class="comment">// ios隐藏键盘</span></div><div class="line">    <span class="keyword">this</span>.$refs.Inp.blur() <span class="comment">// android隐藏键盘</span></div><div class="line">&#125;,</div><div class="line"><span class="comment">// 完成输入</span></div><div class="line">PwdUp () &#123;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.mima.length === <span class="number">5</span>) &#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.mimaHand === <span class="literal">true</span>) &#123;</div><div class="line">      <span class="keyword">this</span>.hideKeyboard()</div><div class="line">      <span class="keyword">this</span>.mimaHand = <span class="literal">false</span></div><div class="line">      <span class="comment">// 这里可以做一个验证过程中的loading</span></div><div class="line">      </div><div class="line">      <span class="comment">// 发送请求，验证短信验证码</span></div><div class="line">      <span class="keyword">this</span>.$store.dispatch(&#123;</div><div class="line">        type: <span class="string">'getAccumulationValidate'</span>,</div><div class="line">        IDCard: <span class="string">'xx'</span>,</div><div class="line">        code: <span class="keyword">this</span>.mima,</div><div class="line">        spcode: <span class="string">'xx'</span>,</div><div class="line">        tel: <span class="string">'xx'</span></div><div class="line">      &#125;)</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.mimaHand)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 需要注意的是，在请求逻辑的回调中，别忘了给this.mimaHand设置成true</span></div></pre></td></tr></table></figure>
+<p>由于在html不部分已经使用胡子语法将更新的’mima’截取并渲染了，故在js部分不做处理，这里也体现出了vue双向绑定带来的便利（在react中是没有双向绑定这个概念的）,这里我要画重点‘<strong>上面的代码其实并不完善，主旨是在提供一个思想，其中在验证码个数上可以利用一个循环来做，这样才能做到灵活应用，才算的上的是一个真正意义上的组件这里；我就偷个懒不改了，我相信这个小问题大家都是能分分钟优化好。</strong>’</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipayCode.jpeg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechatCode.jpeg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES6</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES7</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">前端框架</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">验证码</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yanzengyong.github.io/2017/12/15/模仿微信支付输入验证码/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/12/13/JS图表库推荐及用法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JS图表库推荐及用法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -231,9 +369,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

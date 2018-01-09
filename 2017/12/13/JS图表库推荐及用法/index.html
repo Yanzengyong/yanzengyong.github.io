@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yanzengyong.github.io">
-  <title>Tag: ES7 | Yzy的博客</title>
+  <title>JS图表库推荐及用法 | Yzy的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="没任何描述">
-<meta name="keywords" content="前端, jquery, javascript, html5, Developer, vue, React, css3">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Yzy的博客">
-<meta property="og:url" content="http://yanzengyong.github.io/tags/ES7/index.html">
+  <meta name="description" content="前言：其实有那么点觉得这是一篇用处不大的文章，但是受到前几天‘北京30套房小哥’的启发，懂得了一个真理：人不能闲，一闲就废了。所以吓得我赶紧打开我的markdown编辑器，写点自己懂的东西分享一下，也算是巩固（在我看来，只要有文档的东西，别人再写都是重复一遍）正题：首先我在这里要介绍三款当前强大的js图表库 百度的echarts 一款外国的图表库highcharts 阿里的“echarts”，在阿">
+<meta name="keywords" content="vue,g2,js图表库,echarts">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS图表库推荐及用法">
+<meta property="og:url" content="http://yanzengyong.github.io/2017/12/13/JS图表库推荐及用法/index.html">
 <meta property="og:site_name" content="Yzy的博客">
-<meta property="og:description" content="没任何描述">
+<meta property="og:description" content="前言：其实有那么点觉得这是一篇用处不大的文章，但是受到前几天‘北京30套房小哥’的启发，懂得了一个真理：人不能闲，一闲就废了。所以吓得我赶紧打开我的markdown编辑器，写点自己懂的东西分享一下，也算是巩固（在我看来，只要有文档的东西，别人再写都是重复一遍）正题：首先我在这里要介绍三款当前强大的js图表库 百度的echarts 一款外国的图表库highcharts 阿里的“echarts”，在阿">
+<meta property="og:updated_time" content="2018-01-09T06:18:19.684Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yzy的博客">
-<meta name="twitter:description" content="没任何描述">
+<meta name="twitter:title" content="JS图表库推荐及用法">
+<meta name="twitter:description" content="前言：其实有那么点觉得这是一篇用处不大的文章，但是受到前几天‘北京30套房小哥’的启发，懂得了一个真理：人不能闲，一闲就废了。所以吓得我赶紧打开我的markdown编辑器，写点自己懂的东西分享一下，也算是巩固（在我看来，只要有文档的东西，别人再写都是重复一遍）正题：首先我在这里要介绍三款当前强大的js图表库 百度的echarts 一款外国的图表库highcharts 阿里的“echarts”，在阿">
   
     <link rel="alternative" href="/atom.xml" title="Yzy的博客" type="application/atom+xml">
   
@@ -150,64 +151,217 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-JS图表库推荐及用法" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/19/async:await/" class="archive-article-date">
-  	<time datetime="2017-04-19T01:56:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-19</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/19/async:await/">异步的终极解决方案-ES7的Async/Await</a>
+    <h1 class="article-title" itemprop="name">
+      JS图表库推荐及用法
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/12/13/JS图表库推荐及用法/" class="archive-article-date">
+  	<time datetime="2017-12-13T07:56:26.347Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h6 id="前言：其实有那么点觉得这是一篇用处不大的文章，但是受到前几天‘北京30套房小哥’的启发，懂得了一个真理：人不能闲，一闲就废了。所以吓得我赶紧打开我的markdown编辑器，写点自己懂的东西分享一下，也算是巩固（在我看来，只要有文档的东西，别人再写都是重复一遍）"><a href="#前言：其实有那么点觉得这是一篇用处不大的文章，但是受到前几天‘北京30套房小哥’的启发，懂得了一个真理：人不能闲，一闲就废了。所以吓得我赶紧打开我的markdown编辑器，写点自己懂的东西分享一下，也算是巩固（在我看来，只要有文档的东西，别人再写都是重复一遍）" class="headerlink" title="前言：其实有那么点觉得这是一篇用处不大的文章，但是受到前几天‘北京30套房小哥’的启发，懂得了一个真理：人不能闲，一闲就废了。所以吓得我赶紧打开我的markdown编辑器，写点自己懂的东西分享一下，也算是巩固（在我看来，只要有文档的东西，别人再写都是重复一遍）"></a>前言：其实有那么点觉得这是一篇用处不大的文章，但是受到前几天‘北京30套房小哥’的启发，懂得了一个真理：人不能闲，一闲就废了。所以吓得我赶紧打开我的markdown编辑器，写点自己懂的东西分享一下，也算是巩固（在我看来，只要有文档的东西，别人再写都是重复一遍）</h6><h2 id="正题：首先我在这里要介绍三款当前强大的js图表库"><a href="#正题：首先我在这里要介绍三款当前强大的js图表库" class="headerlink" title="正题：首先我在这里要介绍三款当前强大的js图表库"></a>正题：首先我在这里要介绍三款当前强大的js图表库</h2><ol>
+<li>百度的<a href="http://echarts.baidu.com/" target="_blank" rel="external">echarts</a></li>
+<li>一款外国的图表库<a href="https://www.highcharts.com/" target="_blank" rel="external">highcharts</a></li>
+<li>阿里的“echarts”，在阿里的AntV可视化数据解决方案中的<a href="https://antv.alipay.com/zh-cn/g2/3.x/tutorial" target="_blank" rel="external">G2</a>（当然它还有G6，思维导图树状图等；F2，多为移动端考虑，适用于对性能、大小、扩展性要求严苛的场景）</li>
+</ol>
+<p>现在应该会有朋友问我选哪个一好，如果我个人而言的话我是比较推荐阿里的g2，百度的echarts并不是不够好，而是我觉得初次上手的话并不那么友好。至于highcharts，我觉得是更加方便的一个选择，但是这个网站不是中文的，但是这并不影响它的优秀性。所以最后选什么，我相信大家心里应该已经有了答案。<br><a id="more"></a></p>
+<h2 id="关于图表库的用法和需注意的东西（这次我以echarts-vue-webpack来作为例子讲解）"><a href="#关于图表库的用法和需注意的东西（这次我以echarts-vue-webpack来作为例子讲解）" class="headerlink" title="关于图表库的用法和需注意的东西（这次我以echarts + vue + webpack来作为例子讲解）"></a>关于图表库的用法和需注意的东西（这次我以echarts + vue + webpack来作为例子讲解）</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>使用npm安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install echarts --save</div></pre></td></tr></table></figure>
+<p>或者使用yarn安装（推荐）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn add echarts</div></pre></td></tr></table></figure>
+<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// commonJs方式</span></div><div class="line"><span class="keyword">const</span> echarts = <span class="built_in">require</span>(<span class="string">'echarts'</span>)</div><div class="line"></div><div class="line"><span class="comment">// 基于准备好的dom，初始化echarts实例</span></div><div class="line"><span class="keyword">let</span> myChart = echarts.init(<span class="built_in">document</span>.getElementById(<span class="string">'main'</span>))</div><div class="line"><span class="comment">// 绘制图表</span></div><div class="line">myChart.setOption(&#123;</div><div class="line">    title: &#123;</div><div class="line">        text: <span class="string">'ECharts 入门示例'</span></div><div class="line">    &#125;,</div><div class="line">    tooltip: &#123;&#125;,</div><div class="line">    xAxis: &#123;</div><div class="line">        data: [<span class="string">'衬衫'</span>, <span class="string">'羊毛衫'</span>, <span class="string">'雪纺衫'</span>, <span class="string">'裤子'</span>, <span class="string">'高跟鞋'</span>, <span class="string">'袜子'</span>]</div><div class="line">    &#125;,</div><div class="line">    yAxis: &#123;&#125;,</div><div class="line">    series: [&#123;</div><div class="line">        name: <span class="string">'销量'</span>,</div><div class="line">        type: <span class="string">'bar'</span>,</div><div class="line">        data: [<span class="number">5</span>, <span class="number">20</span>, <span class="number">36</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">20</span>]</div><div class="line">    &#125;]</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 或者使用ES6 Module</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> echarts <span class="keyword">from</span> <span class="string">'echarts'</span></div><div class="line"></div><div class="line">mounted () &#123;</div><div class="line">	echarts.init(<span class="built_in">document</span>.getElementById(<span class="string">'echarts'</span>)).setOption(&#123;</div><div class="line">		title: &#123;</div><div class="line">		  text: <span class="string">'ECharts 入门示例'</span></div><div class="line">		&#125;,</div><div class="line">		tooltip: &#123;&#125;,</div><div class="line">		xAxis: &#123;</div><div class="line">		  data: [<span class="string">'衬衫'</span>, <span class="string">'羊毛衫'</span>, <span class="string">'雪纺衫'</span>, <span class="string">'裤子'</span>, <span class="string">'高跟鞋'</span>, <span class="string">'袜子'</span>]</div><div class="line">		&#125;,</div><div class="line">		yAxis: &#123;&#125;,</div><div class="line">		series: [&#123;</div><div class="line">		  name: <span class="string">'销量'</span>,</div><div class="line">		  type: <span class="string">'bar'</span>,</div><div class="line">		  data: [<span class="number">5</span>, <span class="number">20</span>, <span class="number">36</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">20</span>]</div><div class="line">		&#125;]</div><div class="line">	&#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里我们要强调一个按需引入的思想，因为<code>require(&#39;echarts&#39;)</code>这样的方式是将echarts的所有组件都引入，如果不是做后台数据可视化的话，这样的引入明显显得过重，这里我们就可以用按需引入, <a href="https://github.com/ecomfe/echarts/blob/master/index.js" target="_blank" rel="external">github详情</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// commonJs方式</span></div><div class="line"><span class="comment">// 引入 ECharts 主模块</span></div><div class="line"><span class="keyword">const</span> echarts = <span class="built_in">require</span>(<span class="string">'echarts/lib/echarts'</span>)</div><div class="line"><span class="comment">// 引入柱状图</span></div><div class="line"><span class="built_in">require</span>(<span class="string">'echarts/lib/chart/bar'</span>)</div><div class="line"><span class="comment">// 引入提示框和标题组件</span></div><div class="line"><span class="built_in">require</span>(<span class="string">'echarts/lib/component/tooltip'</span>)</div><div class="line"><span class="built_in">require</span>(<span class="string">'echarts/lib/component/title'</span>)</div><div class="line"></div><div class="line"><span class="comment">//ES6 Module</span></div><div class="line"><span class="keyword">import</span> echarts <span class="keyword">from</span> <span class="string">'echarts/lib/echarts'</span></div><div class="line"><span class="keyword">import</span> <span class="string">'echarts/lib/component/tooltip'</span></div><div class="line"><span class="keyword">import</span> <span class="string">'echarts/lib/component/title'</span></div><div class="line"><span class="keyword">import</span> <span class="string">'echarts/lib/chart/bar'</span></div></pre></td></tr></table></figure>
+<p><strong>注：这里也许会有人问按需引入不带路径可以吗，答案是不可以（如果可以请补充，我认为是不可以的），因为在echarts内部export default的是echarts整体，export出来的其他变量我们并不知道，或者是说他并没有也无法直接export出单独的变量（这是为什么，从我们引入时候用的路径名就不难理解了，这些模块并不再一个文件下面）；所以按需引入我就可以通过上面的方式来做，关于路径参考上面的【github详情】链接。</strong></p>
+<h3 id="创建渲染"><a href="#创建渲染" class="headerlink" title="创建渲染"></a>创建渲染</h3><p>html部分我们先创建一个层，css部分请自行给上宽高</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"echarts"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>js部分值得注意的是，渲染要卸载挂载里面，如果不明白vue生命周期的可以去看看我前面的一篇文章，写的还是很详细的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">	data () &#123;</div><div class="line">		<span class="keyword">return</span> &#123;&#125;</div><div class="line">	&#125;,</div><div class="line">	mounted () &#123;</div><div class="line">		<span class="keyword">this</span>.drawRadar()</div><div class="line">	&#125;,</div><div class="line">	methods: &#123;</div><div class="line">		drawRadar () &#123;</div><div class="line">		    echarts.init(<span class="built_in">document</span>.getElementById(<span class="string">'echarts'</span>)).setOption(&#123;</div><div class="line">		        title: &#123;</div><div class="line">		          text: <span class="string">'ECharts 入门示例'</span></div><div class="line">		        &#125;,</div><div class="line">		        tooltip: &#123;&#125;,</div><div class="line">		        xAxis: &#123;</div><div class="line">		          data: [<span class="string">'衬衫'</span>, <span class="string">'羊毛衫'</span>, <span class="string">'雪纺衫'</span>, <span class="string">'裤子'</span>, <span class="string">'高跟鞋'</span>, <span class="string">'袜子'</span>]</div><div class="line">		        &#125;,</div><div class="line">		        yAxis: &#123;&#125;,</div><div class="line">		        series: [&#123;</div><div class="line">		          name: <span class="string">'销量'</span>,</div><div class="line">		          type: <span class="string">'bar'</span>,</div><div class="line">		          data: [<span class="number">5</span>, <span class="number">20</span>, <span class="number">36</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">20</span>]</div><div class="line">		        &#125;]</div><div class="line">		    &#125;)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>没错，就是这么简单，你已经创建好了一个echarts图表。他的所有配置属性和api都是很全面的，只要耐心看完相信你一定能做出你想要的图表出来。</p>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>在写这边文章的之前是计划着一直往下写的一个真正的实例出来的，不过写到此刻的时候我意识到这下写下去或许文章的主旨会有些偏差，所以此篇文章就作为一个js样式表的推荐和使用前的准备工作。接下来我会重新写一篇前段时间写的一个雷达图作为讲解事例。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipayCode.jpeg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechatCode.jpeg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES6</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES7</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">g2</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">js图表库</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">echarts</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yanzengyong.github.io/2017/12/13/JS图表库推荐及用法/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/12/15/模仿微信支付输入验证码/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Vue模仿微信支付的验证码输入方式
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/09/13/loveLetter/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Thx</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -231,9 +385,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
