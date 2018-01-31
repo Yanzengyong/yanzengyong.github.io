@@ -232,6 +232,145 @@
 
 
   
+    <article id="post-git常用操作指南" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="git基础和使用"><a href="#git基础和使用" class="headerlink" title="git基础和使用"></a>git基础和使用</h1><h2 id="什么是版本库？如何创建版本库？"><a href="#什么是版本库？如何创建版本库？" class="headerlink" title="什么是版本库？如何创建版本库？"></a>什么是版本库？如何创建版本库？</h2><ul>
+<li>什么是版本库呢？版本库又名仓库，英文名repository，在这个仓库里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。</li>
+<li>创建一个版本库非常简单，首先，选择一个合适的地方，创建一个空目录:</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> mkdir learnGit  // 创建一个名为‘learnGit’的文件夹</span></div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> learnGit    // 进入这个文件夹</span></div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">pwd</span>           //<span class="built_in">pwd</span>命令用于显示当前目录。在我的Mac上，这个仓库位于/Users/tmac/Desktop/learnSpace/learnGit</span></div><div class="line">/Users/tmac/Desktop/learnSpace/learnGit</div></pre></td></tr></table></figure>
+<h2 id="现在来尝试创建我们的第一个仓库"><a href="#现在来尝试创建我们的第一个仓库" class="headerlink" title="现在来尝试创建我们的第一个仓库"></a>现在来尝试创建我们的第一个仓库</h2><ol>
+<li>假设我们已经在<strong>‘learnGit’</strong>这个文件夹下面的了</li>
+<li>通过<code>git init</code>命令把这个目录变成Git可以管理的仓库:</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git init</div><div class="line">Initialized empty Git repository in /Users/tmac/Desktop/learnSpace/learnGit/.git/</div></pre></td></tr></table></figure>
+<p>此时git就把仓库创建好了，注意了：这里已经提示我们了，他是一个空的仓库（empty Git repository），这时在<strong>‘learnGit’</strong>文件夹下生成了一个<strong>.git</strong>的文件夹（不过它是一个隐藏的文件，需要你把查看隐藏打开才可以看到）</p>
+<h2 id="如何实现提交和解决问题"><a href="#如何实现提交和解决问题" class="headerlink" title="如何实现提交和解决问题"></a>如何实现提交和解决问题</h2><ul>
+<li>例如<strong>‘learnGit’</strong>文件夹已经有了一些新的文件，我们要将这些文件放到git本地仓库其实只需要简单的两步即可</li>
+<li>第一步，用命令<code>git add .</code>将这些文件保存(这句命令意思是保存所有文件，也是我们最常用的命令)。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git add .</div></pre></td></tr></table></figure>
+<p>注：可以通过<code>git status</code>查看这些文件是否保存了（如果保存成功了在终端你可以看到这些文件的文件名是绿色的，否则为红色的），实质是查看了你此前仓库的操作状态。</p>
+<ul>
+<li>第二步，用命令<code>git commit</code>告诉Git，把文件提交到本地仓库：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git commit -m &quot;first commit&quot;</div></pre></td></tr></table></figure>
+<p>注：简单解释一下<code>git commit</code>命令，-m 后面输入的是本次提交的说明,你可以输入任意内容；执行commit命令后会提示你，有x个文件被改动，在这个文件中有x行的更新。</p>
+<h2 id="其他常用操作"><a href="#其他常用操作" class="headerlink" title="其他常用操作"></a>其他常用操作</h2><ul>
+<li>这是一个查看更改的的git命令</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ git diff</div><div class="line">diff --git a/readme.md b/readme.md</div><div class="line">index a7e9c53..56af4a2 100644</div><div class="line">--- a/readme.md</div><div class="line">+++ b/readme.md</div><div class="line">@@ -1 +1,2 @@</div><div class="line">-#这个是一个learngit文件</div><div class="line">\ No newline at end of file</div><div class="line">+#这个是一个learngit文件</div><div class="line">+* 我就是想看看是否更改了</div><div class="line">\ No newline at end of file</div></pre></td></tr></table></figure>
+<p><code>git diff</code> 是一个查看文件修改的命令，diff后面可以加文件名也可以什么都不加。加上文件名就是看此文件的修改情况，不加是看所有的文件修改情况。</p>
+<h2 id="稍微总结一些模糊的，可能需要的"><a href="#稍微总结一些模糊的，可能需要的" class="headerlink" title="稍微总结一些模糊的，可能需要的"></a>稍微总结一些模糊的，可能需要的</h2><ul>
+<li>git add 的各种区别:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">git add -A   // 添加所有改动</div><div class="line"></div><div class="line">git add *     // 添加新建文件和修改，但是不包括删除</div><div class="line"></div><div class="line">git add .    // 添加新建文件和修改，但是不包括删除</div><div class="line"></div><div class="line">git add -u   // 添加修改和删除，但是不包括新建文件</div></pre></td></tr></table></figure>
+<ul>
+<li>在 commit 前撤销 add:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git reset &lt;file&gt; // 撤销提交单独文件</div><div class="line"></div><div class="line">git reset        // unstage all due changes(把所有保存的文件取消保存)</div></pre></td></tr></table></figure>
+<ul>
+<li>add/commit 前撤销对文件的修改:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -- readme.md   // 注意, add添加后(同commit提交后)就无法通过这种方式撤销修改</div></pre></td></tr></table></figure>
+<p>注：这里我们可以通过<code>git checkout</code>来查看可以撤销的文件名，然后再通过<code>git checkout -- &lt;fileName&gt;</code>即可。 </p>
+<p><strong>特别注意</strong>：<code>git checkout -- file</code>命令中的<code>--</code>很重要，没有<code>--</code>，就变成了“切换到另一个分支”的命令，我们在后面的分支管理中会再次遇到<code>git checkout</code>命令。</p>
+<h2 id="版本的回退"><a href="#版本的回退" class="headerlink" title="版本的回退"></a>版本的回退</h2><ul>
+<li>当我们commit很多个版本以后，我们可能会遇到需要回退版本的时候，这时下面的命令就至关重要了。</li>
+<li>我们通过<code>git log</code>可以查看你所提交过的版本,如果觉得输出的信息太多太过繁杂，我们可以这样<code>git log --pretty=oneline</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ git log</div><div class="line">commit e2b0ddf50bd9c0c7b54b11addda72bcb47905226</div><div class="line">Author: yzy &lt;yzy@yzydeMacBook-Pro.local&gt;</div><div class="line">Date:   Mon Apr 10 14:37:09 2017 +0800</div><div class="line"></div><div class="line">    new update</div><div class="line"></div><div class="line">commit 9abde03751ffbfe70ce3c6208bdd154fecbe80bd</div><div class="line">Author: yzy &lt;yzy@yzydeMacBook-Pro.local&gt;</div><div class="line">Date:   Mon Apr 10 09:17:50 2017 +0800</div><div class="line"></div><div class="line">    modify</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git log --pretty=oneline</div><div class="line">e2b0ddf50bd9c0c7b54b11addda72bcb47905226 new update</div><div class="line">9abde03751ffbfe70ce3c6208bdd154fecbe80bd modify</div></pre></td></tr></table></figure>
+<ul>
+<li><p>现在我们看到的<code>e2b0ddf50bd9c0c7b54b11addda72bcb47905226</code>这样的一串数字就是commit id（俗称版本号），我们可以通过commit id回到相应的版本。</p>
+</li>
+<li><p>首先，Git必须知道当前版本是哪个版本，在Git中，用<code>HEAD</code>表示当前版本，也就是最新的提交<code>e2b0dd...47905226</code>（注意我的提交ID和你的肯定不一样），上一个版本就是<code>HEAD^</code>，上上一个版本就是<code>HEAD^^</code>，当然往上100个版本写100个^比较容易数不过来，所以写成<code>HEAD~100</code>。</p>
+</li>
+<li>回退版本至关重要的命令就是<code>git reset</code>,这个命令不止可以实现版本的切换，还可以让你在add后通过此命令撤销当前add的文件（具体上面有讲解）；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git reset --hard HEAD^</div><div class="line">HEAD is now at 9abde03 modify</div></pre></td></tr></table></figure>
+<p>注：但是我们要注意的是，一旦通过<code>$ git reset --hard HEAD^（commit id）</code>命令回到过去的版本以后，再次<code>git log</code>的时候就无法看到之前（未来）的commit id了，所以这个命令只建议在对比的情况下使用，还是可以通过<code>$ git reset --hard (commit id)</code>回到未来的版本；</p>
+<p>当然也不是完全没有后悔药吃，我们是可以通过<code>git reflog</code>命令查看我们的我们的命令行记录，可以拿到之前的commit id，不过这并不意味着我们可以随便切换版本，一旦命令过多找起来还是很能找的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">git reflog</div><div class="line">9abde03 HEAD@&#123;0&#125;: reset: moving to HEAD^</div><div class="line">e2b0ddf HEAD@&#123;1&#125;: reset: moving to e2b0ddf50bd9c0</div><div class="line">9abde03 HEAD@&#123;2&#125;: reset: moving to HEAD^</div><div class="line">e2b0ddf HEAD@&#123;3&#125;: commit: new update</div><div class="line">9abde03 HEAD@&#123;4&#125;: reset: moving to HEAD</div><div class="line">9abde03 HEAD@&#123;5&#125;: reset: moving to HEAD</div><div class="line">9abde03 HEAD@&#123;6&#125;: commit (initial): modify</div></pre></td></tr></table></figure>
+<h3 id="小小的总结一下上面的命令："><a href="#小小的总结一下上面的命令：" class="headerlink" title="小小的总结一下上面的命令："></a>小小的总结一下上面的命令：</h3><ul>
+<li><p><code>HEAD</code>指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令<code>git reset --hard commit_id</code>。</p>
+</li>
+<li><p>穿梭前，用<code>git log</code>可以查看提交历史，以便确定要回退到哪个版本。</p>
+</li>
+<li><p>要重返未来，用<code>git reflog</code>查看命令历史，以便确定要回到未来的哪个版本。</p>
+</li>
+</ul>
+<h2 id="关于暂存区和工作区的理解"><a href="#关于暂存区和工作区的理解" class="headerlink" title="关于暂存区和工作区的理解"></a>关于暂存区和工作区的理解</h2><p><img src="/img/gitimg.jpeg" alt="MacDown logo"></p>
+<p>先来看名词解释。</p>
+<p>工作区（Working Directory）</p>
+<p>就是你在电脑里能看到的目录，比如我的learnGit文件夹就是一个工作区：</p>
+<p>working-dir</p>
+<p>版本库（Repository）</p>
+<p>工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。</p>
+<p>Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支master，以及指向<strong>master</strong>的一个指针叫<strong>HEAD</strong>。</p>
+<ul>
+<li>前面讲了我们把文件往Git版本库里添加的时候，是分两步执行的：</li>
+</ul>
+<ol>
+<li><p>第一步是用git add把文件添加进去，实际上就是把文件修改添加到暂存区；</p>
+</li>
+<li><p>第二步是用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支。</p>
+</li>
+</ol>
+<ul>
+<li>当你将文件add添加到暂存区后，再次在工作区做修改时，git只会将暂存区的文件提交；</li>
+</ul>
+<p>提交后，用<code>git diff HEAD -- readme.md</code>命令可以查看工作区和版本库里面最新版本的区别。</p>
+<h3 id="这里我们总结一下修改与撤回："><a href="#这里我们总结一下修改与撤回：" class="headerlink" title="这里我们总结一下修改与撤回："></a>这里我们总结一下修改与撤回：</h3><p><code>git reset</code>的作用是把暂存区的修改撤回到工作区，也可以切换版本（回到过去，去到未来），<code>git checkout --</code>的作用是把工作区的操作撤回（无论是修改还是删除都可以撤回）。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上就是我们在工作中常用的到git操作和我们必须掌握的git操作，至于分支的管理ssh密钥的添加等我们之后可以学习和使用。</p>
+<p>最后要说明的是，在多人合同开发同一个项目的时候，每当你需要push代码的时候都要通过<code>git pull</code>先拉取别人的代码，因为需要将大家的代码进行合并，大多数情况下你们没改同一个文件的话git会帮自己合并，如何有需要手动合并的git会提示你哪些文件需要<code>Merge</code>,在需要合并的文件中我们会看到有这样的代码块：</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</div><div class="line">xxxxxxxx</div><div class="line">=======</div><div class="line">xxxxxxxxxxxxx</div><div class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p>我们只需要知道HEAD和====之间的内容是我们自己本地的修改（也就是我的修改），而====和&gt;&gt;&gt;&gt;&gt;之间是我们拉取下来的修改（也就是他人的修改），现在你就可以视情况而定选择是删除自己的代码块还是他人的代码块即可。然后我们再通过<code>git add .</code>保存到暂存区，然后通过<code>git commit -m &#39;xxx&#39;</code>提交到本地仓库，再<code>git push</code>就完成了合作开发的以系列操作了。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/07/git常用操作指南/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/archives/2017/">&laquo; Prev</a><a class="page-number" href="/archives/2017/">1</a><span class="page-number current">2</span>
@@ -326,34 +465,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">旧事</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">生活</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">js - Promise对象</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES7</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
@@ -370,7 +481,31 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ES7</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">js - Promise对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">旧事</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -383,6 +518,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">验证码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
             
             <div class="clearfix"></div>
