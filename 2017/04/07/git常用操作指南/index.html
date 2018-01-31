@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yanzengyong.github.io">
-  <title>Yzy的博客</title>
+  <title>git基础和使用 | Yzy的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="git基础和使用什么是版本库？如何创建版本库？ 什么是版本库呢？版本库又名仓库，英文名repository，在这个仓库里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。 创建一个版本库非常简单，首先，选择一个合适的地方，创建一个空目录:  1234$ mkdir learnGit  // 创建一个名为‘learn">
-<meta name="keywords" content="前端, jquery, javascript, html5, Developer, vue, React, css3">
+  <meta name="description" content="什么是版本库？如何创建版本库？ 什么是版本库呢？版本库又名仓库，英文名repository，在这个仓库里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。 创建一个版本库非常简单，首先，选择一个合适的地方，创建一个空目录:  1234$ mkdir learnGit  // 创建一个名为‘learnGit’的文件夹">
+<meta name="keywords" content="git,代码管理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Yzy的博客">
+<meta property="og:title" content="git基础和使用">
 <meta property="og:url" content="http://yanzengyong.github.io/2017/04/07/git常用操作指南/index.html">
 <meta property="og:site_name" content="Yzy的博客">
-<meta property="og:description" content="git基础和使用什么是版本库？如何创建版本库？ 什么是版本库呢？版本库又名仓库，英文名repository，在这个仓库里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。 创建一个版本库非常简单，首先，选择一个合适的地方，创建一个空目录:  1234$ mkdir learnGit  // 创建一个名为‘learn">
+<meta property="og:description" content="什么是版本库？如何创建版本库？ 什么是版本库呢？版本库又名仓库，英文名repository，在这个仓库里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。 创建一个版本库非常简单，首先，选择一个合适的地方，创建一个空目录:  1234$ mkdir learnGit  // 创建一个名为‘learnGit’的文件夹">
 <meta property="og:image" content="http://yanzengyong.github.io/img/gitimg.jpeg">
-<meta property="og:updated_time" content="2018-01-31T08:57:59.912Z">
+<meta property="og:updated_time" content="2018-01-31T09:02:37.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yzy的博客">
-<meta name="twitter:description" content="git基础和使用什么是版本库？如何创建版本库？ 什么是版本库呢？版本库又名仓库，英文名repository，在这个仓库里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。 创建一个版本库非常简单，首先，选择一个合适的地方，创建一个空目录:  1234$ mkdir learnGit  // 创建一个名为‘learn">
+<meta name="twitter:title" content="git基础和使用">
+<meta name="twitter:description" content="什么是版本库？如何创建版本库？ 什么是版本库呢？版本库又名仓库，英文名repository，在这个仓库里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。 创建一个版本库非常简单，首先，选择一个合适的地方，创建一个空目录:  1234$ mkdir learnGit  // 创建一个名为‘learnGit’的文件夹">
 <meta name="twitter:image" content="http://yanzengyong.github.io/img/gitimg.jpeg">
   
     <link rel="alternative" href="/atom.xml" title="Yzy的博客" type="application/atom+xml">
@@ -156,9 +156,24 @@
             <article id="post-git常用操作指南" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      git基础和使用
+    </h1>
+  
+
+        
+        <a href="/2017/04/07/git常用操作指南/" class="archive-article-date">
+  	<time datetime="2017-04-07T05:50:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-07</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="git基础和使用"><a href="#git基础和使用" class="headerlink" title="git基础和使用"></a>git基础和使用</h1><h2 id="什么是版本库？如何创建版本库？"><a href="#什么是版本库？如何创建版本库？" class="headerlink" title="什么是版本库？如何创建版本库？"></a>什么是版本库？如何创建版本库？</h2><ul>
+        <h2 id="什么是版本库？如何创建版本库？"><a href="#什么是版本库？如何创建版本库？" class="headerlink" title="什么是版本库？如何创建版本库？"></a>什么是版本库？如何创建版本库？</h2><ul>
 <li>什么是版本库呢？版本库又名仓库，英文名repository，在这个仓库里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。</li>
 <li>创建一个版本库非常简单，首先，选择一个合适的地方，创建一个空目录:</li>
 </ul>
@@ -167,6 +182,7 @@
 <li>假设我们已经在<strong>‘learnGit’</strong>这个文件夹下面的了</li>
 <li>通过<code>git init</code>命令把这个目录变成Git可以管理的仓库:</li>
 </ol>
+<a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git init</div><div class="line">Initialized empty Git repository in /Users/tmac/Desktop/learnSpace/learnGit/.git/</div></pre></td></tr></table></figure>
 <p>此时git就把仓库创建好了，注意了：这里已经提示我们了，他是一个空的仓库（empty Git repository），这时在<strong>‘learnGit’</strong>文件夹下生成了一个<strong>.git</strong>的文件夹（不过它是一个隐藏的文件，需要你把查看隐藏打开才可以看到）</p>
 <h2 id="如何实现提交和解决问题"><a href="#如何实现提交和解决问题" class="headerlink" title="如何实现提交和解决问题"></a>如何实现提交和解决问题</h2><ul>
@@ -289,6 +305,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">代码管理</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -483,6 +514,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
@@ -499,14 +538,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES7</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
@@ -515,7 +546,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">js - Promise对象</a>
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ES7</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -524,6 +559,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">生活</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">js - Promise对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -536,10 +579,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">验证码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
             
             <div class="clearfix"></div>
