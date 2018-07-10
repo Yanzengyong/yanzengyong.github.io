@@ -6,35 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yanzengyong.github.io">
-  <title>关于git协同开发的讲解 | Yzy的博客</title>
+  <title>Yzy的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="由于近来工作上关于git的使用在同事之间产生了分歧，所以我想要写一篇关于git协同开发的使用方式；之前我有写过一篇基础的git命令的使用，但是这在多人共同开发的时候还是远远不够。这篇文章并非深层次的讨论，也许对很多读者来说显得有些皮毛，但是它也一定有它存在的意义。关于分支的介绍在Git您可以自由地建立分支。但是，要先确定运用规则才可以有效地利用分支。 这里我们会介绍两种分支 (“Merge分支”和">
-<meta name="keywords" content="关于git协同开发, 关于git协同开发的讲解, 严增勇, git rebase, git合并冲突, git分支合并主分支, git分支合并">
+  <meta name="description" content="Vue Router的用法实例及其router内部的实现原理（第一章：主要用法） 之所以要写这么一篇博客，主要有两个原因，一个是太长时间没有更新博客了，再一个是面试便利蜂的时候面试官问到了这个问题，此后我还会去好好读一下vue的源码，了解vue的内部是如何一步一步实现的。 说个题外话，这里十分感谢便利蜂的面试官，非常耐心地告诉我不能单纯的停留在看api使用的层面上，若公司有了自己编写的独立框架且没">
+<meta name="keywords" content="前端, jquery, javascript, html5, Developer, vue, React, css3, yzy, Yzy, 严增勇的博客, 严增勇, 严增勇贵阳, 严增勇程序员">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于git协同开发的讲解">
-<meta property="og:url" content="http://yanzengyong.github.io/2018/01/22/关于git协同开发的讲解/index.html">
+<meta property="og:title" content="Yzy的博客">
+<meta property="og:url" content="http://yanzengyong.github.io/2018/07/02/Vue Router的用法实例及其router内部的实现原理（第一章：主要用法）/index.html">
 <meta property="og:site_name" content="Yzy的博客">
-<meta property="og:description" content="由于近来工作上关于git的使用在同事之间产生了分歧，所以我想要写一篇关于git协同开发的使用方式；之前我有写过一篇基础的git命令的使用，但是这在多人共同开发的时候还是远远不够。这篇文章并非深层次的讨论，也许对很多读者来说显得有些皮毛，但是它也一定有它存在的意义。关于分支的介绍在Git您可以自由地建立分支。但是，要先确定运用规则才可以有效地利用分支。 这里我们会介绍两种分支 (“Merge分支”和">
-<meta property="og:image" content="http://yanzengyong.github.io/img/status(reserve).jpeg">
-<meta property="og:image" content="http://yanzengyong.github.io/img/diff(reserve).jpeg">
-<meta property="og:image" content="http://yanzengyong.github.io/img/checkout(master).jpeg">
-<meta property="og:image" content="http://yanzengyong.github.io/img/reserve(checkout).jpeg">
-<meta property="og:image" content="http://yanzengyong.github.io/img/stash(all).jpeg">
-<meta property="og:image" content="http://yanzengyong.github.io/img/bugfixBranch.png">
-<meta property="og:image" content="http://yanzengyong.github.io/img/mergeFast-forward.png">
-<meta property="og:image" content="http://yanzengyong.github.io/img/mergeNofast-forward.png">
-<meta property="og:image" content="http://yanzengyong.github.io/img/mergeCommit.png">
-<meta property="og:image" content="http://yanzengyong.github.io/img/canFastButNon.png">
-<meta property="og:image" content="http://yanzengyong.github.io/img/mergeNofast-forward.png">
-<meta property="og:image" content="http://yanzengyong.github.io/img/rebase.png">
-<meta property="og:image" content="http://yanzengyong.github.io/img/rebaseing.png">
-<meta property="og:image" content="http://yanzengyong.github.io/img/rebaseresult.png">
-<meta property="og:image" content="http://yanzengyong.github.io/img/meWechat.jpeg">
-<meta property="og:updated_time" content="2018-03-13T01:45:45.000Z">
+<meta property="og:description" content="Vue Router的用法实例及其router内部的实现原理（第一章：主要用法） 之所以要写这么一篇博客，主要有两个原因，一个是太长时间没有更新博客了，再一个是面试便利蜂的时候面试官问到了这个问题，此后我还会去好好读一下vue的源码，了解vue的内部是如何一步一步实现的。 说个题外话，这里十分感谢便利蜂的面试官，非常耐心地告诉我不能单纯的停留在看api使用的层面上，若公司有了自己编写的独立框架且没">
+<meta property="og:updated_time" content="2018-07-10T04:39:34.347Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于git协同开发的讲解">
-<meta name="twitter:description" content="由于近来工作上关于git的使用在同事之间产生了分歧，所以我想要写一篇关于git协同开发的使用方式；之前我有写过一篇基础的git命令的使用，但是这在多人共同开发的时候还是远远不够。这篇文章并非深层次的讨论，也许对很多读者来说显得有些皮毛，但是它也一定有它存在的意义。关于分支的介绍在Git您可以自由地建立分支。但是，要先确定运用规则才可以有效地利用分支。 这里我们会介绍两种分支 (“Merge分支”和">
-<meta name="twitter:image" content="http://yanzengyong.github.io/img/status(reserve).jpeg">
+<meta name="twitter:title" content="Yzy的博客">
+<meta name="twitter:description" content="Vue Router的用法实例及其router内部的实现原理（第一章：主要用法） 之所以要写这么一篇博客，主要有两个原因，一个是太长时间没有更新博客了，再一个是面试便利蜂的时候面试官问到了这个问题，此后我还会去好好读一下vue的源码，了解vue的内部是如何一步一步实现的。 说个题外话，这里十分感谢便利蜂的面试官，非常耐心地告诉我不能单纯的停留在看api使用的层面上，若公司有了自己编写的独立框架且没">
   
     <link rel="alternative" href="/atom.xml" title="Yzy的博客" type="application/atom+xml">
   
@@ -167,95 +151,82 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-关于git协同开发的讲解" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Vue Router的用法实例及其router内部的实现原理（第一章：主要用法）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      关于git协同开发的讲解
-    </h1>
-  
-
-        
-        <a href="/2018/01/22/关于git协同开发的讲解/" class="archive-article-date">
-  	<time datetime="2018-01-22T11:36:51.882Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-22</time>
-</a>
-        
-        
-          <span class="archive-article-date">
-            本文阅读量 <span id="busuanzi_value_page_pv"></span>
-          </span>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="由于近来工作上关于git的使用在同事之间产生了分歧，所以我想要写一篇关于git协同开发的使用方式；之前我有写过一篇基础的git命令的使用，但是这在多人共同开发的时候还是远远不够。这篇文章并非深层次的讨论，也许对很多读者来说显得有些皮毛，但是它也一定有它存在的意义。"><a href="#由于近来工作上关于git的使用在同事之间产生了分歧，所以我想要写一篇关于git协同开发的使用方式；之前我有写过一篇基础的git命令的使用，但是这在多人共同开发的时候还是远远不够。这篇文章并非深层次的讨论，也许对很多读者来说显得有些皮毛，但是它也一定有它存在的意义。" class="headerlink" title="由于近来工作上关于git的使用在同事之间产生了分歧，所以我想要写一篇关于git协同开发的使用方式；之前我有写过一篇基础的git命令的使用，但是这在多人共同开发的时候还是远远不够。这篇文章并非深层次的讨论，也许对很多读者来说显得有些皮毛，但是它也一定有它存在的意义。"></a>由于近来工作上关于git的使用在同事之间产生了分歧，所以我想要写一篇关于git协同开发的使用方式；之前我有写过一篇基础的git命令的使用，但是这在多人共同开发的时候还是远远不够。这篇文章并非深层次的讨论，也许对很多读者来说显得有些皮毛，但是它也一定有它存在的意义。</h3><h2 id="关于分支的介绍"><a href="#关于分支的介绍" class="headerlink" title="关于分支的介绍"></a>关于分支的介绍</h2><p>在Git您可以自由地建立分支。但是，要先确定运用规则才可以有效地利用分支。</p>
-<p>这里我们会介绍两种分支 (“Merge分支”和 “Topic分支” ) 的运用规则。</p>
-<h2 id="Merge分支"><a href="#Merge分支" class="headerlink" title="Merge分支"></a>Merge分支</h2><p>Merge分支是为了可以随时release（发布）而创建的分支，它还能作为Topic分支的源分支使用。保持分支稳定的状态是很重要的。如果要进行更改，通常先创建Topic分支。</p>
-<p>细说，Merge分支作为源头分支，通常它就是我们在开发中的master分支，同时我们在开发的过程中不断会有新的功能加入，bug的修复等，为了能让master分支时刻保持稳定，我们通常会新建其他分支进行开发最后完成时再将它合并到master分支上（这里我们略过测试分支，因为不一定会有，有的话也是同理所以不加垒诉），关于这点，如果你用图形化工具如Sourcetree，你是可以很直观地看到master是十分线性的。<br><a id="more"></a></p>
-<h2 id="Topic分支"><a href="#Topic分支" class="headerlink" title="Topic分支"></a>Topic分支</h2><p>Topic（主题）分支是为了开发新功能或修复bug等任务而建立的分支。若要同时进行多个的任务，请创建多个的Topic分支。</p>
-<p>Topic分支是从稳定的Merge分支创建的。完成作业后，要把Topic分支合并回Merge分支。（再次重复了一遍）</p>
-<h2 id="这里补充说明一下stash"><a href="#这里补充说明一下stash" class="headerlink" title="这里补充说明一下stash"></a>这里补充说明一下stash</h2><p>还未提交的修改内容以及新添加的文件，留在索引区域或工作树的情况下切换到其他的分支时，修改内容会从原来的分支移动到目标分支。</p>
-<p>但是如果在checkout的目标分支中相同的文件也有修改，checkout会失败的。这时要么先提交修改内容，要么用stash暂时保存修改内容后再checkout。</p>
-<p>stash是临时保存文件修改内容的区域。stash可以暂时保存工作树和索引里还没提交的修改内容，您可以事后再取出暂存的修改，应用到原先的分支或其他的分支上。</p>
-<p>用代码的形式讲解一下：</p>
-<p>首先假设我reserve分支，此时我更改了reserve分支上的两个文件，如图:</p>
-<!-- ![status](./status(reserve).jpeg) -->
-<p><img src="/img/status(reserve).jpeg" width="80%"></p>
-<p>现在，我们通过diff看看更改了些什么：</p>
-<!-- ![diff](./diff(reserve).jpeg) -->
-<p><img src="/img/diff(reserve).jpeg" width="80%"></p>
-<p>此刻，我们切换到master分支：</p>
-<!-- ![master(checkout)](./checkout(master).jpeg) -->
-<p><img src="/img/checkout(master).jpeg" width="80%"></p>
-<p>这时，我们看到原本干净的master分支多次了这两个改动；我们可以再在cityPlan.js中做一些小的改动，改完之后再通过<code>git checkout reserve</code>切会reserve分支。你会发现reserve分支上原本的改动被master分支上最新的改动覆盖了。</p>
-<!-- ![reserve(checkout)](./reserve(checkout).jpeg) -->
-<p><img src="/img/reserve(checkout).jpeg" width="80%"></p>
-<p>为了解决这一问题：我们可以通stash来保存当前分支的更改，也可以给当前的更改命名<code>git stash save &#39;blablabla&#39;</code>, 如果保存了多个stash，可以通过<code>git stash list</code>查看， 可以通过<code>git stash apply stash@{n}</code>来选择某次保存的更改进行开发。默认<code>git stash apply</code>选择的是最后一次的保存；<code>git stash drop</code>是删除的是stash@{0}位子上的保存（也就是最新的保存）。<code>git stash pop</code>是选中最新的保存的同时将其在stash list中删除。而<code>git stash clear</code>可以一次性清空stash栈</p>
-<!-- ![stash(all)](./stash(all).jpeg) -->
-<p><img src="/img/stash(all).jpeg" width="80%"></p>
-<p>画重点：当我修改了a.js，这时我stash将这次的修改存储，可能我现在不想提交代码但是我想要拉取代码或者修改存储前的代码，当你想要当前的拉去或者修改同你存储的代码进行合并，这时你必须<code>git add .</code>将这些修改放入暂存区，然后再<code>git stash pop</code>完成合并。如果直接<code>git stash pop</code>会告诉你无法使用</p>
-<figure class="highlight subunit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">error: </span></div><div class="line">Your local changes to the following files would be overwritten by merge:</div><div class="line">	xxxx/xxxx/xxx/xxx/xxx.xx</div><div class="line">Please commit your changes or stash them before you merge.</div></pre></td></tr></table></figure>
-<p> 并且很友好的提示你在合并之前必须先提交当前的更改或者是暂存</p>
-<p><strong>Git强大的地方也体现在他有好的警告和提示，大部分情况下你多是可以通过提示解决出现的问题</strong></p>
-<h2 id="分支的合并"><a href="#分支的合并" class="headerlink" title="分支的合并"></a>分支的合并</h2><p>完成作业后的topic分支，最后要合并回merge（master）分支。合并分支有2种方法：使用merge或rebase。使用这2种方法，合并后分支的历史记录会有很大的差别。</p>
-<h2 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h2><p>使用merge可以合并多个历史记录的流程。</p>
-<p>如图所示，bugfix分支是一个以master分支为基础分出来的新分支</p>
-<p><img src="/img/bugfixBranch.png" alt="bugfix"><br><!-- <img src='/img/bugfixBranch.png' width = '80%' /> --></p>
-<p>这时将bugfix分支合并到master分支时，若当master在此期间没有被更改过，那么git会做这样一个操作：把master分支的位置移动到bugfix的最新分支上。这样的合并我们称之为fast-forward（快进）合并。</p>
-<p><img src="/img/mergeFast-forward.png" alt="bugfix"><br><!-- <img src='/img/mergeFast-forward.png' width = '80%' /> --></p>
-<p>另一种情况：当master分支在此期间被更改了（并且没有更改回分出去时的版本），那么git会做这样的一个操作：合并会产生一个提交，master分支的HEAD会移动到该提交上。</p>
-<p><img src="/img/mergeNofast-forward.png" alt="bugfix"><br><!-- <img src='/img/mergeNofast-forward.png' width = '80%' /> --></p>
-<p><img src="/img/mergeCommit.png" alt="bugfix"><br><!-- <img src='/img/mergeCommit.png' width = '80%' /> --></p>
-<p><strong>注：执行合并时，如果设定了non fast-forward选项，即使在能够fast-forward合并的情况下也会生成新的提交并合并。执行non fast-forward后，分支会维持原状。那么要查明在这个分支里的操作就很容易了。如图所示：</strong></p>
-<p><img src="/img/canFastButNon.png" alt="bugfix"><br><!-- <img src='/img/canFastButNon.png' width = '80%' /> --></p>
-<h2 id="rebase"><a href="#rebase" class="headerlink" title="rebase"></a>rebase</h2><p>同样的，还是从master分支分出来的：</p>
-<p><img src="/img/mergeNofast-forward.png" alt="bugfix"><br><!-- <img src='/img/mergeNofast-forward.png' width = '80%' /> --></p>
-<p>我们使用rebase进行合并的话，如图所示：</p>
-<p><img src="/img/rebase.png" alt="bugfix"><br><!-- <img src='/img/rebase.png' width = '80%' /> --></p>
-<p>首先，当我们rebase bugfix分支到master分支的时候，bugfix分支的提交历史都会添加在master分支的后面，如图所示：</p>
-<p><img src="/img/rebaseing.png" alt="bugfix"><br><!-- <img src='/img/rebaseing.png' width = '80%' /> --></p>
-<p>rebase之后，master的HEAD位置不会改变，因此，要合并master分支和bugfix分支，即是将master的HEAD移动到bugfix的HEAD上面</p>
-<p><img src="/img/rebaseresult.png" alt="bugfix"><br><!-- <img src='/img/rebaseresult.png' width = '80%' /> --></p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>merge和rebase都是合并分支，但是他们的各自的特点不同，但是结果相同。</p>
-<ul>
-<li><p>merge<br>  一次性合并，历史记录简单。是对比原有提交和当前提交的差异，将新的内容反映进去，有冲突的内容自行更改。（同git pull一个原理，git pull会自动合并代码，有些同学并不知道这个知识点，所以在这里提一下）</p>
-</li>
-<li><p>rebase<br>  一步一步合并，历史记录复杂。它会将每一次的提交都做一次合并，这样有利于你查看每一次的更改情况编写每一次冲突的解决方案。</p>
-</li>
+        <h1 id="Vue-Router的用法实例及其router内部的实现原理（第一章：主要用法）"><a href="#Vue-Router的用法实例及其router内部的实现原理（第一章：主要用法）" class="headerlink" title="Vue Router的用法实例及其router内部的实现原理（第一章：主要用法）"></a>Vue Router的用法实例及其router内部的实现原理（第一章：主要用法）</h1><ul>
+<li>之所以要写这么一篇博客，主要有两个原因，一个是太长时间没有更新博客了，再一个是面试便利蜂的时候面试官问到了这个问题，此后我还会去好好读一下vue的源码，了解vue的内部是如何一步一步实现的。</li>
+<li>说个题外话，这里十分感谢便利蜂的面试官，非常耐心地告诉我不能单纯的停留在看api使用的层面上，若公司有了自己编写的独立框架且没有完整易懂的文档时，不能理解其中原理那么工作上面就要抓瞎了。这里也算是通过这次面试找到了新的学习方向和急需补足的地方；</li>
 </ul>
-<p>因此我们在协同开发的时候，一般操作如下：</p>
-<p>在topic（主题）分支要经常更新master（主）分支上的最新代码，以便同步当前分支最新状态，此时我们应该使用rebase。以master作为当前分支的基石，如果当前这个主题分支是你一个人开发的时候，这时是不会产生冲突的。（注：主题分支永远是领先于master分支的）</p>
-<p>当我们要将主题分支合并到master分支的时候，我们使用merge（注：此时的主题分支是领先于master分支的）</p>
-<p>这里我写一个我常用的工作流程：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">// 当前处在reserve分支 提交你的更改并切换到master分支上</div><div class="line">git commit -m &apos;xxxxxx&apos;</div><div class="line">git checkout master</div><div class="line"></div><div class="line">// 获取最新的主分支代码</div><div class="line">git pull addressName master</div><div class="line"></div><div class="line">// 再回到功能分支上 并且把最新的主分支rebase进去 若有冲突在此时解决</div><div class="line">git checkout reserve</div><div class="line">git rebase master</div><div class="line"></div><div class="line">// 这里可能会用到的命令：冲突解决完之后，使用git add file-name 来标记冲突已解决，执行此命令继续：</div><div class="line">git rebase --continue</div><div class="line"></div><div class="line">// 如果中间遇到某个补丁不需要应用，可以用下面命令忽略：</div><div class="line">git rebase --skip</div><div class="line"></div><div class="line">// 如果想回到rebase执行之前的状态，可以执行：</div><div class="line">git rebase --abort</div><div class="line"></div><div class="line">// 再切换到主分支进行合并 提交即可</div><div class="line">git checkout master</div><div class="line">git merge reserve</div><div class="line">git push addressName master</div></pre></td></tr></table></figure>
-<p>这样做的好处是，远程主干上的历史永远是线性的。每个人在本地分支解决冲突，不会在主干上产生冲突。</p>
-<h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p>我认为以上所述在平时的开发中是几乎都可以应对的了，关于回退版本之类的我在此前的git操作基础中是有的，可以翻阅查看。若以上有描述不清或者描述错误的请指出，我会对它再做出新的修改。</p>
-<p>微信： Yzy</p>
-<p><img src="/img/meWechat.jpeg" width="50%"></p>
+<h2 id="这里，我先以的应用层面出发"><a href="#这里，我先以的应用层面出发" class="headerlink" title="这里，我先以的应用层面出发"></a>这里，我先以的应用层面出发</h2><h5 id="在使用上我们直接跳过安装步骤，但是介绍还是有必要提一下的："><a href="#在使用上我们直接跳过安装步骤，但是介绍还是有必要提一下的：" class="headerlink" title="在使用上我们直接跳过安装步骤，但是介绍还是有必要提一下的："></a>在使用上我们直接跳过安装步骤，但是介绍还是有必要提一下的：</h5><p>vue router是官方的路由管理器，它可以使得单页面应用变得易如反掌；</p>
+<p>功能如下：</p>
+<ul>
+<li>嵌套路由/视图表</li>
+<li>模块化、基于组件的路由配置</li>
+<li>路由参数、查询、通配符</li>
+<li>基于vue过渡（transition）组件的视图过渡效果</li>
+<li>细粒度的导航控制</li>
+<li>带有自动激活的css class 的链接</li>
+<li>html5历史模式或者hash模式， 在ie9中自动降级</li>
+<li>自定义的滚动条行为</li>
+</ul>
+<p>其表面渲染的原理即：通过<router-view></router-view>标签将组件一一对应给相应的路由，使其在对应的路由下渲染对应的组件。</p>
+<p>这里讲两点基础且实用的东西：</p>
+<p>一.动态路由===》配置的时候以<code>path: &#39;/user/:id&#39;</code>这样的方式配置，其实就是以不同的参数实现不同的页面数据，需要注意的是：<strong>例如从 /user/foo 导航到 /user/bar，原来的组件实例会被复用。因为两个路由都渲染同个组件，比起销毁再创建，复用则显得更加高效。不过，这也意味着组件的生命周期钩子不会再被调用。</strong></p>
+<p>复用组件时，相对路由参数的变化作出相应的话；</p>
+<p>1.可以watch $route对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">watch: &#123;</div><div class="line"> <span class="string">'$route'</span> (currentRoute, beforeRoute) &#123;</div><div class="line"> 	<span class="comment">// 作出改变</span></div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2.使用beforeRouteUpdate守卫：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">beforeRouteUpdate (to, <span class="keyword">from</span>, next) &#123;</div><div class="line">  <span class="comment">// 处理逻辑</span></div><div class="line">  next()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>二.常用的的一些路由匹配</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123; <span class="attr">path</span>: <span class="string">'/'</span> &#125;,</div><div class="line"><span class="comment">// params are denoted with a colon ":"</span></div><div class="line">&#123; <span class="attr">path</span>: <span class="string">'/params/:foo/:bar'</span> &#125;,</div><div class="line"><span class="comment">// a param can be made optional by adding "?"</span></div><div class="line">&#123; <span class="attr">path</span>: <span class="string">'/optional-params/:foo?'</span> &#125;,</div><div class="line"><span class="comment">// a param can be followed by a regex pattern in parens</span></div><div class="line"><span class="comment">// this route will only be matched if :id is all numbers</span></div><div class="line">&#123; <span class="attr">path</span>: <span class="string">'/params-with-regex/:id(\\d+)'</span> &#125;,</div><div class="line"><span class="comment">// asterisk can match anything</span></div><div class="line">&#123; <span class="attr">path</span>: <span class="string">'/asterisk/*'</span> &#125;,</div><div class="line"><span class="comment">// make part of th path optional by wrapping with parens and add "?"</span></div><div class="line">&#123; <span class="attr">path</span>: <span class="string">'/optional-group/(foo/)?bar'</span> &#125;</div></pre></td></tr></table></figure>
+<h3 id="跳转方式："><a href="#跳转方式：" class="headerlink" title="跳转方式："></a>跳转方式：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 字符串</span></div><div class="line">router.push(<span class="string">'home'</span>)</div><div class="line"></div><div class="line"><span class="comment">// 对象</span></div><div class="line">router.push(&#123; <span class="attr">path</span>: <span class="string">'home'</span> &#125;)</div><div class="line"></div><div class="line"><span class="comment">// 命名的路由</span></div><div class="line">router.push(&#123; <span class="attr">name</span>: <span class="string">'user'</span>, <span class="attr">params</span>: &#123; <span class="attr">userId</span>: <span class="number">123</span> &#125;&#125;)</div><div class="line"></div><div class="line"><span class="comment">// 带查询参数，变成 /register?plan=private</span></div><div class="line">router.push(&#123; <span class="attr">path</span>: <span class="string">'register'</span>, <span class="attr">query</span>: &#123; <span class="attr">plan</span>: <span class="string">'private'</span> &#125;&#125;)</div></pre></td></tr></table></figure>
+<p><strong>注意：这里第一种和第二种方法，即传入字符串或参数使用字符串拼接会有个坑======》就是当你项目中用到嵌套路由的时候它在匹配上会出问题（当你的嵌套路由为：`{<br>path: ‘/:choice’, component: IndexVue, children:[{path: ‘/foo’, component: fooVue}]}的时候，因为你无法确定:choice的情况，所以无法用字符串的方式写死它，所以切记在你的项目中若有嵌套路由的情况，尽量避免这样的写法，请使用name的方式）</strong>（来自项目中遇到的坑）</p>
+<p><strong>注意：如果提供了 path，params 会被忽略，上述例子中的 query 并不属于这种情况。取而代之的是下面例子的做法，你需要提供路由的 name 或手写完整的带有参数的 path</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> userId = <span class="number">123</span></div><div class="line">router.push(&#123; <span class="attr">name</span>: <span class="string">'user'</span>, <span class="attr">params</span>: &#123; userId &#125;&#125;) <span class="comment">// -&gt; /user/123</span></div><div class="line">router.push(&#123; <span class="attr">path</span>: <span class="string">`/user/<span class="subst">$&#123;userId&#125;</span>`</span> &#125;) <span class="comment">// -&gt; /user/123</span></div><div class="line"><span class="comment">// 这里的 params 不生效</span></div><div class="line">router.push(&#123; <span class="attr">path</span>: <span class="string">'/user'</span>, <span class="attr">params</span>: &#123; userId &#125;&#125;) <span class="comment">// -&gt; /user</span></div></pre></td></tr></table></figure>
+<ul>
+<li>像是<strong>视图命名</strong>、<strong>重定向</strong>、<strong>别名</strong>等这些这里就不家常菜篇幅垒述了，可见<a href="https://github.com/vuejs/vue-router/tree/next/examples" target="_blank" rel="external">examples</a>，他们之间都可以互相配合使用，重定向函数也可以配合路由组件传参数使用（props）</li>
+</ul>
+<h3 id="导航守卫"><a href="#导航守卫" class="headerlink" title="导航守卫"></a>导航守卫</h3><p>作用及其应用：vue-router 提供的导航守卫主要用来通过跳转或取消的方式守卫导航。有多种机会植入路由导航过程中：全局的, 单个路由独享的, 或者组件级的（官方的文字）</p>
+<p>全局守卫中有个router.beforeEach全局前置守卫，比如<strong>用它做页面访问权限的验证就是最好的应用场景，例如判断是否有用户票据，若没有就需要其到登陆页面进行登陆：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// router.js</span></div><div class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></div><div class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></div><div class="line">Vue.use(Router)</div><div class="line"><span class="keyword">import</span> HelloWorld <span class="keyword">from</span> <span class="string">'HelloWorld'</span></div><div class="line">...</div><div class="line"><span class="keyword">const</span> routes = [...]</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</div><div class="line">  routes</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// main.js</span></div><div class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'./router'</span></div><div class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (to.path !== <span class="string">'/login'</span> &amp;&amp; !localStorage.getItem(<span class="string">'accessTicket'</span>)) &#123;</div><div class="line">    next(&#123;</div><div class="line">      path: <span class="string">'/login'</span>,</div><div class="line">      query: &#123; <span class="attr">redirect</span>: to.fullPath &#125;</div><div class="line">    &#125;)</div><div class="line">    <span class="comment">// 作为登陆后跳转回被强迫显示登陆页面前的页面</span></div><div class="line">    <span class="comment">// fullPath是上一级页面且是完整的地址，通过query拿到链接进行跳转</span></div><div class="line">    <span class="keyword">return</span></div><div class="line">  &#125;</div><div class="line">  next()</div><div class="line">&#125;)</div><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  el: <span class="string">'#app'</span>,</div><div class="line">  router,</div><div class="line">  components: &#123; App &#125;,</div><div class="line">  template: <span class="string">'&lt;App/&gt;'</span></div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// store.js</span></div><div class="line"><span class="keyword">const</span> state = &#123;</div><div class="line">  accessTicket: <span class="literal">null</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">const</span> mutations = &#123;</div><div class="line">  login_In (state, payload) &#123;</div><div class="line">    state.accessTicket = payload.data</div><div class="line">    localStorage.setItem(<span class="string">'accessTicket'</span>, <span class="built_in">JSON</span>.stringify(payload.data))</div><div class="line">  &#125;,</div><div class="line">  login_Out (state, payload) &#123;</div><div class="line">    state.accessTicket = <span class="literal">null</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注：确保要调用 next 方法，否则钩子就不会被 resolved</p>
+<ul>
+<li>还记得前面讲的<code>beforeRouteUpdate</code>吗，它同<code>beforeRouteEnter</code> 、<code>beforeRouteLeave</code>一样，都是组件内守卫，用法同生命周期钩子一样，他们都在全局路由守卫和路由独享守卫钩子结束之后执行；注：<strong>beforeRouteEnter不能访问组件实例this，因为当守卫执行前，组件实例还没有被创建</strong>，而beforeRouteUpdate和beforeRouteLeave都是可以访问组件实例this的</li>
+<li>不过不用担心，官方已经给出了解决办法，支持beforeRouteEnter中的next方法中传入回调函数，那么我们就可以通过此方法得到组件实例：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">next(<span class="function"><span class="params">vm</span> =&gt;</span> &#123;</div><div class="line">  <span class="comment">// 通过 `vm` 访问组件实例</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>在beforeRouteLeave这个钩子函数上官方也给了一个非常具有实际意义的应用场景，用来禁止用户在还未保存修改前突然离开</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">beforeRouteLeave (to, <span class="keyword">from</span> , next) &#123;</div><div class="line">  <span class="keyword">const</span> answer = <span class="built_in">window</span>.confirm(<span class="string">'Do you really want to leave? you have unsaved changes!'</span>)</div><div class="line">  <span class="keyword">if</span> (answer) &#123;</div><div class="line">    next()</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    next(<span class="literal">false</span>)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="完整的导航解析流程"><a href="#完整的导航解析流程" class="headerlink" title="完整的导航解析流程"></a>完整的导航解析流程</h3><ol>
+<li>导航被触发。</li>
+<li>在失活的组件里调用离开守卫。</li>
+<li>调用全局的 beforeEach 守卫。</li>
+<li>在重用的组件里调用 beforeRouteUpdate 守卫 (2.2+)。</li>
+<li>在路由配置里调用 beforeEnter。</li>
+<li>解析异步路由组件。</li>
+<li>在被激活的组件里调用 beforeRouteEnter。</li>
+<li>调用全局的 beforeResolve 守卫 (2.5+)。</li>
+<li>导航被确认。</li>
+<li>调用全局的 afterEach 钩子。</li>
+<li>触发 DOM 更新。</li>
+<li>用创建好的实例调用 beforeRouteEnter 守卫中传给 next 的回调函数。</li>
+</ol>
+<ul>
+<li>依据官网文档的流程，我们这里略去路由元信息、过渡动效、数据获取，这3个也比较简单，文档上也十分清晰；</li>
+</ul>
+<h3 id="滚动行为"><a href="#滚动行为" class="headerlink" title="滚动行为"></a>滚动行为</h3><p>一个十分好玩的功能，scrollBehavior，应该说其功能已经非常强大了，那就是第三个参数 savedPosition 当且仅当 popstate 导航 (通过浏览器的 前进/后退 按钮触发) 时才可用，而通过页面的点击事件进行跳转时若没有设置hash锚点和路由元信息的情况下，return空数组的效果即：下一个路由的页面位置为上一个路由跳转时的页面位置；（hash锚点和路由元信息可以作为导航到路由滚动位置的判断）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// router.js</span></div><div class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></div><div class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></div><div class="line">Vue.use(Router)</div><div class="line"></div><div class="line"><span class="keyword">const</span> routes = [</div><div class="line">  &#123;</div><div class="line">    path: <span class="string">'/'</span>,</div><div class="line">    name: <span class="string">'Top'</span>,</div><div class="line">    components: &#123;</div><div class="line">      Left: Left,</div><div class="line">      Top: Top</div><div class="line">    &#125;,</div><div class="line">    meta: &#123;<span class="attr">scrollToTop</span>: <span class="literal">true</span>&#125;</div><div class="line">  &#125;,</div><div class="line">  &#123;</div><div class="line">    path: <span class="string">'/login'</span>,</div><div class="line">    name: <span class="string">'HelloWorld'</span>,</div><div class="line">    component: HelloWorld,</div><div class="line">    meta: &#123;<span class="attr">scrollToTop</span>: <span class="literal">true</span>&#125;</div><div class="line">  &#125;</div><div class="line">]</div><div class="line"></div><div class="line"><span class="keyword">const</span> scrollBehavior = <span class="function">(<span class="params">to, <span class="keyword">from</span>, savedPosition</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (savedPosition) &#123;</div><div class="line">    <span class="comment">// savedPosition 仅在支持 popstate 下生效</span></div><div class="line">    <span class="keyword">return</span> savedPosition</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">const</span> position = &#123;&#125;</div><div class="line">    <span class="comment">// 锚点选择</span></div><div class="line">    <span class="keyword">if</span> (to.hash) &#123;</div><div class="line">      position.selector = to.hash</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 检查任何匹配的路由配置是否拥有路由元信息</span></div><div class="line">    <span class="keyword">if</span> (to.matched.some(<span class="function"><span class="params">m</span> =&gt;</span> m.meta.scrollToTop)) &#123;</div><div class="line">      <span class="comment">// cords will be used if no selector is provided,</span></div><div class="line">      <span class="comment">// or if the selector didn't match any element.</span></div><div class="line">      position.x = <span class="number">0</span></div><div class="line">      position.y = <span class="number">0</span></div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 如果返回的是 falsy 或者是一个空对象的话</span></div><div class="line">    <span class="comment">// 将会抛出当前的位置</span></div><div class="line">    <span class="keyword">return</span> position</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</div><div class="line">  routes,</div><div class="line">  scrollBehavior</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p><strong>当我们想要某个页面在这次单页面运行的时候始终保持着它上一次离开时存在的位置，我们可以这样做</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// router.js</span></div><div class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></div><div class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></div><div class="line">Vue.use(Router)</div><div class="line"></div><div class="line"><span class="keyword">const</span> routes = [</div><div class="line">  &#123;</div><div class="line">    path: <span class="string">'/'</span>,</div><div class="line">    name: <span class="string">'Top'</span>,</div><div class="line">    components: &#123;</div><div class="line">      Left: Left,</div><div class="line">      Top: Top</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  &#123;</div><div class="line">    path: <span class="string">'/login'</span>,</div><div class="line">    name: <span class="string">'HelloWorld'</span>,</div><div class="line">    component: HelloWorld,</div><div class="line">    meta: &#123;</div><div class="line">      scrollVal: <span class="number">0</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">]</div><div class="line"></div><div class="line"><span class="comment">// 在else中你可以做更多的判断来达成你想要的效果</span></div><div class="line"><span class="keyword">const</span> scrollBehavior = <span class="function">(<span class="params">to, <span class="keyword">from</span>, savedPosition</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (savedPosition) &#123;</div><div class="line">    <span class="comment">// savedPosition 仅在支持 popstate 下生效</span></div><div class="line">    <span class="keyword">return</span> savedPosition</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">const</span> position = &#123;</div><div class="line">      x: <span class="number">0</span>,</div><div class="line">      y: <span class="number">0</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (to.matched[<span class="number">0</span>].meta.scrollVal) &#123;</div><div class="line">      position.x = to.matched[<span class="number">0</span>].meta.scrollVal</div><div class="line">      position.y = to.matched[<span class="number">0</span>].meta.scrollVal</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 如果返回的是 falsy 或者是一个空对象的话</span></div><div class="line">    <span class="comment">// 将会抛出当前的位置</span></div><div class="line">    <span class="keyword">return</span> position</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</div><div class="line">  routes,</div><div class="line">  scrollBehavior</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// HelloWorld.vue</span></div><div class="line"><span class="comment">// 在需要设置的页面中的导航离开钩子中添加新的路由元信息</span></div><div class="line">beforeRouteLeave (to, <span class="keyword">from</span>, next) &#123;</div><div class="line">  <span class="comment">// 导航离开该组件的对应路由时调用</span></div><div class="line">  <span class="comment">// 可以访问组件实例 `this`</span></div><div class="line">  <span class="keyword">this</span>.$route.matched[<span class="number">0</span>].meta.scrollVal = <span class="built_in">document</span>.documentElement.scrollTop</div><div class="line">  next()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>这里有一个需要说明的点：</strong>document.body.scrollTop在xhtml标准网页或者更简单的说是带&lt;!DOCTYPE html&gt;标签的页面里得到的结果是0，如果不要此标签则一切正常。反之document.documentElement.scrollTop在没有&lt;!DOCTYPE html&gt;标签的页面中得到的结果也是0；<strong>所以在使用的时候需要注意此处的坑。</strong></p>
+<p><strong>这里做一个题外补充：</strong></p>
+<p>documentElement 和 body 相关说明：</p>
+<p>body是DOM对象里的body子节点，即 <body> 标签；</body></p>
+<p>documentElement 是整个节点树的根节点root，即<html> 标签；</html></p>
+<h2 id="下一个章节将讲述路由懒加载"><a href="#下一个章节将讲述路由懒加载" class="headerlink" title="下一个章节将讲述路由懒加载"></a>下一个章节将讲述路由懒加载</h2><p>——————–未完待续</p>
 
       
 
@@ -295,17 +266,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -356,7 +316,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yanzengyong.github.io/2018/01/22/关于git协同开发的讲解/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yanzengyong.github.io/2018/07/02/Vue Router的用法实例及其router内部的实现原理（第一章：主要用法）/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -370,18 +330,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/07/02/Vue Router的用法实例及其router内部的实现原理（第一章：主要用法）/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/12/15/模仿微信支付输入验证码/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Vue模仿微信支付的验证码输入方式</div>
+    <a href="/2018/01/22/关于git协同开发的讲解/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">关于git协同开发的讲解</div>
       <i class="icon-circle-right"></i>
     </a>
   

@@ -152,6 +152,127 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Vue Router的用法实例及其router内部的实现原理（第一章：主要用法）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Vue-Router的用法实例及其router内部的实现原理（第一章：主要用法）"><a href="#Vue-Router的用法实例及其router内部的实现原理（第一章：主要用法）" class="headerlink" title="Vue Router的用法实例及其router内部的实现原理（第一章：主要用法）"></a>Vue Router的用法实例及其router内部的实现原理（第一章：主要用法）</h1><ul>
+<li>之所以要写这么一篇博客，主要有两个原因，一个是太长时间没有更新博客了，再一个是面试便利蜂的时候面试官问到了这个问题，此后我还会去好好读一下vue的源码，了解vue的内部是如何一步一步实现的。</li>
+<li>说个题外话，这里十分感谢便利蜂的面试官，非常耐心地告诉我不能单纯的停留在看api使用的层面上，若公司有了自己编写的独立框架且没有完整易懂的文档时，不能理解其中原理那么工作上面就要抓瞎了。这里也算是通过这次面试找到了新的学习方向和急需补足的地方；</li>
+</ul>
+<h2 id="这里，我先以的应用层面出发"><a href="#这里，我先以的应用层面出发" class="headerlink" title="这里，我先以的应用层面出发"></a>这里，我先以的应用层面出发</h2><h5 id="在使用上我们直接跳过安装步骤，但是介绍还是有必要提一下的："><a href="#在使用上我们直接跳过安装步骤，但是介绍还是有必要提一下的：" class="headerlink" title="在使用上我们直接跳过安装步骤，但是介绍还是有必要提一下的："></a>在使用上我们直接跳过安装步骤，但是介绍还是有必要提一下的：</h5><p>vue router是官方的路由管理器，它可以使得单页面应用变得易如反掌；</p>
+<p>功能如下：</p>
+<ul>
+<li>嵌套路由/视图表</li>
+<li>模块化、基于组件的路由配置</li>
+<li>路由参数、查询、通配符</li>
+<li>基于vue过渡（transition）组件的视图过渡效果</li>
+<li>细粒度的导航控制</li>
+<li>带有自动激活的css class 的链接</li>
+<li>html5历史模式或者hash模式， 在ie9中自动降级</li>
+<li>自定义的滚动条行为</li>
+</ul>
+<p>其表面渲染的原理即：通过<router-view></router-view>标签将组件一一对应给相应的路由，使其在对应的路由下渲染对应的组件。</p>
+<p>这里讲两点基础且实用的东西：</p>
+<p>一.动态路由===》配置的时候以<code>path: &#39;/user/:id&#39;</code>这样的方式配置，其实就是以不同的参数实现不同的页面数据，需要注意的是：<strong>例如从 /user/foo 导航到 /user/bar，原来的组件实例会被复用。因为两个路由都渲染同个组件，比起销毁再创建，复用则显得更加高效。不过，这也意味着组件的生命周期钩子不会再被调用。</strong></p>
+<p>复用组件时，相对路由参数的变化作出相应的话；</p>
+<p>1.可以watch $route对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">watch: &#123;</div><div class="line"> <span class="string">'$route'</span> (currentRoute, beforeRoute) &#123;</div><div class="line"> 	<span class="comment">// 作出改变</span></div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2.使用beforeRouteUpdate守卫：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">beforeRouteUpdate (to, <span class="keyword">from</span>, next) &#123;</div><div class="line">  <span class="comment">// 处理逻辑</span></div><div class="line">  next()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>二.常用的的一些路由匹配</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123; <span class="attr">path</span>: <span class="string">'/'</span> &#125;,</div><div class="line"><span class="comment">// params are denoted with a colon ":"</span></div><div class="line">&#123; <span class="attr">path</span>: <span class="string">'/params/:foo/:bar'</span> &#125;,</div><div class="line"><span class="comment">// a param can be made optional by adding "?"</span></div><div class="line">&#123; <span class="attr">path</span>: <span class="string">'/optional-params/:foo?'</span> &#125;,</div><div class="line"><span class="comment">// a param can be followed by a regex pattern in parens</span></div><div class="line"><span class="comment">// this route will only be matched if :id is all numbers</span></div><div class="line">&#123; <span class="attr">path</span>: <span class="string">'/params-with-regex/:id(\\d+)'</span> &#125;,</div><div class="line"><span class="comment">// asterisk can match anything</span></div><div class="line">&#123; <span class="attr">path</span>: <span class="string">'/asterisk/*'</span> &#125;,</div><div class="line"><span class="comment">// make part of th path optional by wrapping with parens and add "?"</span></div><div class="line">&#123; <span class="attr">path</span>: <span class="string">'/optional-group/(foo/)?bar'</span> &#125;</div></pre></td></tr></table></figure>
+<h3 id="跳转方式："><a href="#跳转方式：" class="headerlink" title="跳转方式："></a>跳转方式：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 字符串</span></div><div class="line">router.push(<span class="string">'home'</span>)</div><div class="line"></div><div class="line"><span class="comment">// 对象</span></div><div class="line">router.push(&#123; <span class="attr">path</span>: <span class="string">'home'</span> &#125;)</div><div class="line"></div><div class="line"><span class="comment">// 命名的路由</span></div><div class="line">router.push(&#123; <span class="attr">name</span>: <span class="string">'user'</span>, <span class="attr">params</span>: &#123; <span class="attr">userId</span>: <span class="number">123</span> &#125;&#125;)</div><div class="line"></div><div class="line"><span class="comment">// 带查询参数，变成 /register?plan=private</span></div><div class="line">router.push(&#123; <span class="attr">path</span>: <span class="string">'register'</span>, <span class="attr">query</span>: &#123; <span class="attr">plan</span>: <span class="string">'private'</span> &#125;&#125;)</div></pre></td></tr></table></figure>
+<p><strong>注意：这里第一种和第二种方法，即传入字符串或参数使用字符串拼接会有个坑======》就是当你项目中用到嵌套路由的时候它在匹配上会出问题（当你的嵌套路由为：`{<br>path: ‘/:choice’, component: IndexVue, children:[{path: ‘/foo’, component: fooVue}]}的时候，因为你无法确定:choice的情况，所以无法用字符串的方式写死它，所以切记在你的项目中若有嵌套路由的情况，尽量避免这样的写法，请使用name的方式）</strong>（来自项目中遇到的坑）</p>
+<p><strong>注意：如果提供了 path，params 会被忽略，上述例子中的 query 并不属于这种情况。取而代之的是下面例子的做法，你需要提供路由的 name 或手写完整的带有参数的 path</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> userId = <span class="number">123</span></div><div class="line">router.push(&#123; <span class="attr">name</span>: <span class="string">'user'</span>, <span class="attr">params</span>: &#123; userId &#125;&#125;) <span class="comment">// -&gt; /user/123</span></div><div class="line">router.push(&#123; <span class="attr">path</span>: <span class="string">`/user/<span class="subst">$&#123;userId&#125;</span>`</span> &#125;) <span class="comment">// -&gt; /user/123</span></div><div class="line"><span class="comment">// 这里的 params 不生效</span></div><div class="line">router.push(&#123; <span class="attr">path</span>: <span class="string">'/user'</span>, <span class="attr">params</span>: &#123; userId &#125;&#125;) <span class="comment">// -&gt; /user</span></div></pre></td></tr></table></figure>
+<ul>
+<li>像是<strong>视图命名</strong>、<strong>重定向</strong>、<strong>别名</strong>等这些这里就不家常菜篇幅垒述了，可见<a href="https://github.com/vuejs/vue-router/tree/next/examples" target="_blank" rel="external">examples</a>，他们之间都可以互相配合使用，重定向函数也可以配合路由组件传参数使用（props）</li>
+</ul>
+<h3 id="导航守卫"><a href="#导航守卫" class="headerlink" title="导航守卫"></a>导航守卫</h3><p>作用及其应用：vue-router 提供的导航守卫主要用来通过跳转或取消的方式守卫导航。有多种机会植入路由导航过程中：全局的, 单个路由独享的, 或者组件级的（官方的文字）</p>
+<p>全局守卫中有个router.beforeEach全局前置守卫，比如<strong>用它做页面访问权限的验证就是最好的应用场景，例如判断是否有用户票据，若没有就需要其到登陆页面进行登陆：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// router.js</span></div><div class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></div><div class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></div><div class="line">Vue.use(Router)</div><div class="line"><span class="keyword">import</span> HelloWorld <span class="keyword">from</span> <span class="string">'HelloWorld'</span></div><div class="line">...</div><div class="line"><span class="keyword">const</span> routes = [...]</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</div><div class="line">  routes</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// main.js</span></div><div class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'./router'</span></div><div class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (to.path !== <span class="string">'/login'</span> &amp;&amp; !localStorage.getItem(<span class="string">'accessTicket'</span>)) &#123;</div><div class="line">    next(&#123;</div><div class="line">      path: <span class="string">'/login'</span>,</div><div class="line">      query: &#123; <span class="attr">redirect</span>: to.fullPath &#125;</div><div class="line">    &#125;)</div><div class="line">    <span class="comment">// 作为登陆后跳转回被强迫显示登陆页面前的页面</span></div><div class="line">    <span class="comment">// fullPath是上一级页面且是完整的地址，通过query拿到链接进行跳转</span></div><div class="line">    <span class="keyword">return</span></div><div class="line">  &#125;</div><div class="line">  next()</div><div class="line">&#125;)</div><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  el: <span class="string">'#app'</span>,</div><div class="line">  router,</div><div class="line">  components: &#123; App &#125;,</div><div class="line">  template: <span class="string">'&lt;App/&gt;'</span></div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// store.js</span></div><div class="line"><span class="keyword">const</span> state = &#123;</div><div class="line">  accessTicket: <span class="literal">null</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">const</span> mutations = &#123;</div><div class="line">  login_In (state, payload) &#123;</div><div class="line">    state.accessTicket = payload.data</div><div class="line">    localStorage.setItem(<span class="string">'accessTicket'</span>, <span class="built_in">JSON</span>.stringify(payload.data))</div><div class="line">  &#125;,</div><div class="line">  login_Out (state, payload) &#123;</div><div class="line">    state.accessTicket = <span class="literal">null</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注：确保要调用 next 方法，否则钩子就不会被 resolved</p>
+<ul>
+<li>还记得前面讲的<code>beforeRouteUpdate</code>吗，它同<code>beforeRouteEnter</code> 、<code>beforeRouteLeave</code>一样，都是组件内守卫，用法同生命周期钩子一样，他们都在全局路由守卫和路由独享守卫钩子结束之后执行；注：<strong>beforeRouteEnter不能访问组件实例this，因为当守卫执行前，组件实例还没有被创建</strong>，而beforeRouteUpdate和beforeRouteLeave都是可以访问组件实例this的</li>
+<li>不过不用担心，官方已经给出了解决办法，支持beforeRouteEnter中的next方法中传入回调函数，那么我们就可以通过此方法得到组件实例：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">next(<span class="function"><span class="params">vm</span> =&gt;</span> &#123;</div><div class="line">  <span class="comment">// 通过 `vm` 访问组件实例</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>在beforeRouteLeave这个钩子函数上官方也给了一个非常具有实际意义的应用场景，用来禁止用户在还未保存修改前突然离开</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">beforeRouteLeave (to, <span class="keyword">from</span> , next) &#123;</div><div class="line">  <span class="keyword">const</span> answer = <span class="built_in">window</span>.confirm(<span class="string">'Do you really want to leave? you have unsaved changes!'</span>)</div><div class="line">  <span class="keyword">if</span> (answer) &#123;</div><div class="line">    next()</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    next(<span class="literal">false</span>)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="完整的导航解析流程"><a href="#完整的导航解析流程" class="headerlink" title="完整的导航解析流程"></a>完整的导航解析流程</h3><ol>
+<li>导航被触发。</li>
+<li>在失活的组件里调用离开守卫。</li>
+<li>调用全局的 beforeEach 守卫。</li>
+<li>在重用的组件里调用 beforeRouteUpdate 守卫 (2.2+)。</li>
+<li>在路由配置里调用 beforeEnter。</li>
+<li>解析异步路由组件。</li>
+<li>在被激活的组件里调用 beforeRouteEnter。</li>
+<li>调用全局的 beforeResolve 守卫 (2.5+)。</li>
+<li>导航被确认。</li>
+<li>调用全局的 afterEach 钩子。</li>
+<li>触发 DOM 更新。</li>
+<li>用创建好的实例调用 beforeRouteEnter 守卫中传给 next 的回调函数。</li>
+</ol>
+<ul>
+<li>依据官网文档的流程，我们这里略去路由元信息、过渡动效、数据获取，这3个也比较简单，文档上也十分清晰；</li>
+</ul>
+<h3 id="滚动行为"><a href="#滚动行为" class="headerlink" title="滚动行为"></a>滚动行为</h3><p>一个十分好玩的功能，scrollBehavior，应该说其功能已经非常强大了，那就是第三个参数 savedPosition 当且仅当 popstate 导航 (通过浏览器的 前进/后退 按钮触发) 时才可用，而通过页面的点击事件进行跳转时若没有设置hash锚点和路由元信息的情况下，return空数组的效果即：下一个路由的页面位置为上一个路由跳转时的页面位置；（hash锚点和路由元信息可以作为导航到路由滚动位置的判断）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// router.js</span></div><div class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></div><div class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></div><div class="line">Vue.use(Router)</div><div class="line"></div><div class="line"><span class="keyword">const</span> routes = [</div><div class="line">  &#123;</div><div class="line">    path: <span class="string">'/'</span>,</div><div class="line">    name: <span class="string">'Top'</span>,</div><div class="line">    components: &#123;</div><div class="line">      Left: Left,</div><div class="line">      Top: Top</div><div class="line">    &#125;,</div><div class="line">    meta: &#123;<span class="attr">scrollToTop</span>: <span class="literal">true</span>&#125;</div><div class="line">  &#125;,</div><div class="line">  &#123;</div><div class="line">    path: <span class="string">'/login'</span>,</div><div class="line">    name: <span class="string">'HelloWorld'</span>,</div><div class="line">    component: HelloWorld,</div><div class="line">    meta: &#123;<span class="attr">scrollToTop</span>: <span class="literal">true</span>&#125;</div><div class="line">  &#125;</div><div class="line">]</div><div class="line"></div><div class="line"><span class="keyword">const</span> scrollBehavior = <span class="function">(<span class="params">to, <span class="keyword">from</span>, savedPosition</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (savedPosition) &#123;</div><div class="line">    <span class="comment">// savedPosition 仅在支持 popstate 下生效</span></div><div class="line">    <span class="keyword">return</span> savedPosition</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">const</span> position = &#123;&#125;</div><div class="line">    <span class="comment">// 锚点选择</span></div><div class="line">    <span class="keyword">if</span> (to.hash) &#123;</div><div class="line">      position.selector = to.hash</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 检查任何匹配的路由配置是否拥有路由元信息</span></div><div class="line">    <span class="keyword">if</span> (to.matched.some(<span class="function"><span class="params">m</span> =&gt;</span> m.meta.scrollToTop)) &#123;</div><div class="line">      <span class="comment">// cords will be used if no selector is provided,</span></div><div class="line">      <span class="comment">// or if the selector didn't match any element.</span></div><div class="line">      position.x = <span class="number">0</span></div><div class="line">      position.y = <span class="number">0</span></div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 如果返回的是 falsy 或者是一个空对象的话</span></div><div class="line">    <span class="comment">// 将会抛出当前的位置</span></div><div class="line">    <span class="keyword">return</span> position</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</div><div class="line">  routes,</div><div class="line">  scrollBehavior</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p><strong>当我们想要某个页面在这次单页面运行的时候始终保持着它上一次离开时存在的位置，我们可以这样做</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// router.js</span></div><div class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></div><div class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></div><div class="line">Vue.use(Router)</div><div class="line"></div><div class="line"><span class="keyword">const</span> routes = [</div><div class="line">  &#123;</div><div class="line">    path: <span class="string">'/'</span>,</div><div class="line">    name: <span class="string">'Top'</span>,</div><div class="line">    components: &#123;</div><div class="line">      Left: Left,</div><div class="line">      Top: Top</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  &#123;</div><div class="line">    path: <span class="string">'/login'</span>,</div><div class="line">    name: <span class="string">'HelloWorld'</span>,</div><div class="line">    component: HelloWorld,</div><div class="line">    meta: &#123;</div><div class="line">      scrollVal: <span class="number">0</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">]</div><div class="line"></div><div class="line"><span class="comment">// 在else中你可以做更多的判断来达成你想要的效果</span></div><div class="line"><span class="keyword">const</span> scrollBehavior = <span class="function">(<span class="params">to, <span class="keyword">from</span>, savedPosition</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (savedPosition) &#123;</div><div class="line">    <span class="comment">// savedPosition 仅在支持 popstate 下生效</span></div><div class="line">    <span class="keyword">return</span> savedPosition</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">const</span> position = &#123;</div><div class="line">      x: <span class="number">0</span>,</div><div class="line">      y: <span class="number">0</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (to.matched[<span class="number">0</span>].meta.scrollVal) &#123;</div><div class="line">      position.x = to.matched[<span class="number">0</span>].meta.scrollVal</div><div class="line">      position.y = to.matched[<span class="number">0</span>].meta.scrollVal</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 如果返回的是 falsy 或者是一个空对象的话</span></div><div class="line">    <span class="comment">// 将会抛出当前的位置</span></div><div class="line">    <span class="keyword">return</span> position</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</div><div class="line">  routes,</div><div class="line">  scrollBehavior</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// HelloWorld.vue</span></div><div class="line"><span class="comment">// 在需要设置的页面中的导航离开钩子中添加新的路由元信息</span></div><div class="line">beforeRouteLeave (to, <span class="keyword">from</span>, next) &#123;</div><div class="line">  <span class="comment">// 导航离开该组件的对应路由时调用</span></div><div class="line">  <span class="comment">// 可以访问组件实例 `this`</span></div><div class="line">  <span class="keyword">this</span>.$route.matched[<span class="number">0</span>].meta.scrollVal = <span class="built_in">document</span>.documentElement.scrollTop</div><div class="line">  next()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>这里有一个需要说明的点：</strong>document.body.scrollTop在xhtml标准网页或者更简单的说是带&lt;!DOCTYPE html&gt;标签的页面里得到的结果是0，如果不要此标签则一切正常。反之document.documentElement.scrollTop在没有&lt;!DOCTYPE html&gt;标签的页面中得到的结果也是0；<strong>所以在使用的时候需要注意此处的坑。</strong></p>
+<p><strong>这里做一个题外补充：</strong></p>
+<p>documentElement 和 body 相关说明：</p>
+<p>body是DOM对象里的body子节点，即 <body> 标签；</body></p>
+<p>documentElement 是整个节点树的根节点root，即<html> 标签；</html></p>
+<h2 id="下一个章节将讲述路由懒加载"><a href="#下一个章节将讲述路由懒加载" class="headerlink" title="下一个章节将讲述路由懒加载"></a>下一个章节将讲述路由懒加载</h2><p>——————–未完待续</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/02/Vue Router的用法实例及其router内部的实现原理（第一章：主要用法）/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+  
     <article id="post-关于git协同开发的讲解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -321,6 +442,14 @@
           <ul class="article-tag-list" q-show="showTags">
             
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据请求</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">fetch</a>
+              </li>
+            
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
             
@@ -337,15 +466,15 @@
               </li>
             
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据请求</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">fetch</a>
-              </li>
-            
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ES6 - ES7</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ES6 - javascript</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -354,6 +483,14 @@
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js - 基础</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">js - Promise对象</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -369,23 +506,7 @@
               </li>
             
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">js - Promise对象</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ES6 - javascript</a>
-              </li>
-            
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">vue - 前端框架</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
             
             <div class="clearfix"></div>
@@ -436,7 +557,7 @@
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-          <div class="aboutme-wrap" id="js-aboutme">一个间歇性疯狂coding，间歇性看到代码想吐的前端程序员。16年开始接触代码，同年6月正式入行，最初作为一名小白学习原生js耗费了我大量精力，也感谢曾经的我没有放弃。对于主流技术的渴望，便开始学习流行框架angular并使用，此后从微信小程序到react再到vue，都有在工作中使用并实现业务，拥有独立完成项目的能力。基础扎实，有探索精神。入行时励志3年成为一名合格的全栈工程师，愿在这条路上不忘初心。</div>
+          <div class="aboutme-wrap" id="js-aboutme">垃圾前端码农，菜鸡中的菜鸡，膨胀自我认知错误，静下心好好学习中</div>
           <div class="whoWrite">Yzy&2018.2.28</div>
   	  	
     	</section>
