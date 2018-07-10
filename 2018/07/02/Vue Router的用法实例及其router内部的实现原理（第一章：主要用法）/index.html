@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yanzengyong.github.io">
-  <title>Yzy的博客</title>
+  <title>Vue Router的用法实例及其router内部的实现原理（第一章：主要用法） | Yzy的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Vue Router的用法实例及其router内部的实现原理（第一章：主要用法） 之所以要写这么一篇博客，主要有两个原因，一个是太长时间没有更新博客了，再一个是面试便利蜂的时候面试官问到了这个问题，此后我还会去好好读一下vue的源码，了解vue的内部是如何一步一步实现的。 说个题外话，这里十分感谢便利蜂的面试官，非常耐心地告诉我不能单纯的停留在看api使用的层面上，若公司有了自己编写的独立框架且没">
-<meta name="keywords" content="前端, jquery, javascript, html5, Developer, vue, React, css3, yzy, Yzy, 严增勇的博客, 严增勇, 严增勇贵阳, 严增勇程序员">
+  <meta name="description" content="之所以要写这么一篇博客，主要有两个原因，一个是太长时间没有更新博客了，再一个是面试便利蜂的时候面试官问到了这个问题，此后我还会去好好读一下vue的源码，了解vue的内部是如何一步一步实现的。 说个题外话，这里十分感谢便利蜂的面试官，非常耐心地告诉我不能单纯的停留在看api使用的层面上，若公司有了自己编写的独立框架且没有完整易懂的文档时，不能理解其中原理那么工作上面就要抓瞎了。这里也算是通过这次面">
+<meta name="keywords" content="Vue Router的用法实例 , router内部原理, 严增勇">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Yzy的博客">
+<meta property="og:title" content="Vue Router的用法实例及其router内部的实现原理（第一章：主要用法）">
 <meta property="og:url" content="http://yanzengyong.github.io/2018/07/02/Vue Router的用法实例及其router内部的实现原理（第一章：主要用法）/index.html">
 <meta property="og:site_name" content="Yzy的博客">
-<meta property="og:description" content="Vue Router的用法实例及其router内部的实现原理（第一章：主要用法） 之所以要写这么一篇博客，主要有两个原因，一个是太长时间没有更新博客了，再一个是面试便利蜂的时候面试官问到了这个问题，此后我还会去好好读一下vue的源码，了解vue的内部是如何一步一步实现的。 说个题外话，这里十分感谢便利蜂的面试官，非常耐心地告诉我不能单纯的停留在看api使用的层面上，若公司有了自己编写的独立框架且没">
-<meta property="og:updated_time" content="2018-07-10T04:39:34.347Z">
+<meta property="og:description" content="之所以要写这么一篇博客，主要有两个原因，一个是太长时间没有更新博客了，再一个是面试便利蜂的时候面试官问到了这个问题，此后我还会去好好读一下vue的源码，了解vue的内部是如何一步一步实现的。 说个题外话，这里十分感谢便利蜂的面试官，非常耐心地告诉我不能单纯的停留在看api使用的层面上，若公司有了自己编写的独立框架且没有完整易懂的文档时，不能理解其中原理那么工作上面就要抓瞎了。这里也算是通过这次面">
+<meta property="og:updated_time" content="2018-07-10T04:48:07.909Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yzy的博客">
-<meta name="twitter:description" content="Vue Router的用法实例及其router内部的实现原理（第一章：主要用法） 之所以要写这么一篇博客，主要有两个原因，一个是太长时间没有更新博客了，再一个是面试便利蜂的时候面试官问到了这个问题，此后我还会去好好读一下vue的源码，了解vue的内部是如何一步一步实现的。 说个题外话，这里十分感谢便利蜂的面试官，非常耐心地告诉我不能单纯的停留在看api使用的层面上，若公司有了自己编写的独立框架且没">
+<meta name="twitter:title" content="Vue Router的用法实例及其router内部的实现原理（第一章：主要用法）">
+<meta name="twitter:description" content="之所以要写这么一篇博客，主要有两个原因，一个是太长时间没有更新博客了，再一个是面试便利蜂的时候面试官问到了这个问题，此后我还会去好好读一下vue的源码，了解vue的内部是如何一步一步实现的。 说个题外话，这里十分感谢便利蜂的面试官，非常耐心地告诉我不能单纯的停留在看api使用的层面上，若公司有了自己编写的独立框架且没有完整易懂的文档时，不能理解其中原理那么工作上面就要抓瞎了。这里也算是通过这次面">
   
     <link rel="alternative" href="/atom.xml" title="Yzy的博客" type="application/atom+xml">
   
@@ -154,9 +154,29 @@
             <article id="post-Vue Router的用法实例及其router内部的实现原理（第一章：主要用法）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Vue Router的用法实例及其router内部的实现原理（第一章：主要用法）
+    </h1>
+  
+
+        
+        <a href="/2018/07/02/Vue Router的用法实例及其router内部的实现原理（第一章：主要用法）/" class="archive-article-date">
+  	<time datetime="2018-07-02T10:00:08.915Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-02</time>
+</a>
+        
+        
+          <span class="archive-article-date">
+            本文阅读量 <span id="busuanzi_value_page_pv"></span>
+          </span>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Vue-Router的用法实例及其router内部的实现原理（第一章：主要用法）"><a href="#Vue-Router的用法实例及其router内部的实现原理（第一章：主要用法）" class="headerlink" title="Vue Router的用法实例及其router内部的实现原理（第一章：主要用法）"></a>Vue Router的用法实例及其router内部的实现原理（第一章：主要用法）</h1><ul>
+        <ul>
 <li>之所以要写这么一篇博客，主要有两个原因，一个是太长时间没有更新博客了，再一个是面试便利蜂的时候面试官问到了这个问题，此后我还会去好好读一下vue的源码，了解vue的内部是如何一步一步实现的。</li>
 <li>说个题外话，这里十分感谢便利蜂的面试官，非常耐心地告诉我不能单纯的停留在看api使用的层面上，若公司有了自己编写的独立框架且没有完整易懂的文档时，不能理解其中原理那么工作上面就要抓瞎了。这里也算是通过这次面试找到了新的学习方向和急需补足的地方；</li>
 </ul>
@@ -172,10 +192,8 @@
 <li>html5历史模式或者hash模式， 在ie9中自动降级</li>
 <li>自定义的滚动条行为</li>
 </ul>
-<p>其表面渲染的原理即：通过<router-view></router-view>标签将组件一一对应给相应的路由，使其在对应的路由下渲染对应的组件。</p>
-<p>这里讲两点基础且实用的东西：</p>
-<p>一.动态路由===》配置的时候以<code>path: &#39;/user/:id&#39;</code>这样的方式配置，其实就是以不同的参数实现不同的页面数据，需要注意的是：<strong>例如从 /user/foo 导航到 /user/bar，原来的组件实例会被复用。因为两个路由都渲染同个组件，比起销毁再创建，复用则显得更加高效。不过，这也意味着组件的生命周期钩子不会再被调用。</strong></p>
-<p>复用组件时，相对路由参数的变化作出相应的话；</p>
+<p>其表面渲染的原理即：通过<code>&lt;router-view&gt;&lt;/router-view&gt;</code>标签将组件一一对应给相应的路由，使其在对应的路由下渲染对应的组件。<br>这里讲两点基础且实用的东西：</p>
+<p>一.动态路由===》配置的时候以<code>path: &#39;/user/:id&#39;</code>这样的方式配置，其实就是以不同的参数实现不同的页面数据，需要注意的是：<strong>例如从 /user/foo 导航到 /user/bar，原来的组件实例会被复用。因为两个路由都渲染同个组件，比起销毁再创建，复用则显得更加高效。不过，这也意味着组件的生命周期钩子不会再被调用。</strong><br>复用组件时，相对路由参数的变化作出相应的话；</p>
 <p>1.可以watch $route对象：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">watch: &#123;</div><div class="line"> <span class="string">'$route'</span> (currentRoute, beforeRoute) &#123;</div><div class="line"> 	<span class="comment">// 作出改变</span></div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>2.使用beforeRouteUpdate守卫：</p>
@@ -266,6 +284,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Vue Router</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -498,15 +531,11 @@
               </li>
             
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Vue Router</a>
+              </li>
+            
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ES6 - ES7</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ES6 - javascript</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -523,6 +552,14 @@
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">js - Promise对象</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ES6 - javascript</a>
               </li>
             
               <li class="article-tag-list-item">
