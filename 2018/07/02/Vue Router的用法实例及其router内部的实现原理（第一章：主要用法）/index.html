@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yanzengyong.github.io">
-  <title>Vue Router的用法实例及其router内部的实现原理（第一章：主要用法） | Yzy的博客</title>
+  <title>Vue Router的用法实例 | Yzy的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="之所以要写这么一篇博客，主要有两个原因，一个是太长时间没有更新博客了，再一个是面试便利蜂的时候面试官问到了这个问题，此后我还会去好好读一下vue的源码，了解vue的内部是如何一步一步实现的。 说个题外话，这里十分感谢便利蜂的面试官，非常耐心地告诉我不能单纯的停留在看api使用的层面上，若公司有了自己编写的独立框架且没有完整易懂的文档时，不能理解其中原理那么工作上面就要抓瞎了。这里也算是通过这次面">
+  <meta name="description" content="这里，我先以的应用层面出发在使用上我们直接跳过安装步骤，但是介绍还是有必要提一下的：vue router是官方的路由管理器，它可以使得单页面应用变得易如反掌； 功能如下：  嵌套路由/视图表 模块化、基于组件的路由配置 路由参数、查询、通配符 基于vue过渡（transition）组件的视图过渡效果 细粒度的导航控制 带有自动激活的css class 的链接 html5历史模式或者hash模式，">
 <meta name="keywords" content="Vue Router的用法实例 , router内部原理, 严增勇">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue Router的用法实例及其router内部的实现原理（第一章：主要用法）">
+<meta property="og:title" content="Vue Router的用法实例">
 <meta property="og:url" content="http://yanzengyong.github.io/2018/07/02/Vue Router的用法实例及其router内部的实现原理（第一章：主要用法）/index.html">
 <meta property="og:site_name" content="Yzy的博客">
-<meta property="og:description" content="之所以要写这么一篇博客，主要有两个原因，一个是太长时间没有更新博客了，再一个是面试便利蜂的时候面试官问到了这个问题，此后我还会去好好读一下vue的源码，了解vue的内部是如何一步一步实现的。 说个题外话，这里十分感谢便利蜂的面试官，非常耐心地告诉我不能单纯的停留在看api使用的层面上，若公司有了自己编写的独立框架且没有完整易懂的文档时，不能理解其中原理那么工作上面就要抓瞎了。这里也算是通过这次面">
-<meta property="og:updated_time" content="2018-07-14T05:53:34.125Z">
+<meta property="og:description" content="这里，我先以的应用层面出发在使用上我们直接跳过安装步骤，但是介绍还是有必要提一下的：vue router是官方的路由管理器，它可以使得单页面应用变得易如反掌； 功能如下：  嵌套路由/视图表 模块化、基于组件的路由配置 路由参数、查询、通配符 基于vue过渡（transition）组件的视图过渡效果 细粒度的导航控制 带有自动激活的css class 的链接 html5历史模式或者hash模式，">
+<meta property="og:updated_time" content="2018-11-10T04:10:19.437Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vue Router的用法实例及其router内部的实现原理（第一章：主要用法）">
-<meta name="twitter:description" content="之所以要写这么一篇博客，主要有两个原因，一个是太长时间没有更新博客了，再一个是面试便利蜂的时候面试官问到了这个问题，此后我还会去好好读一下vue的源码，了解vue的内部是如何一步一步实现的。 说个题外话，这里十分感谢便利蜂的面试官，非常耐心地告诉我不能单纯的停留在看api使用的层面上，若公司有了自己编写的独立框架且没有完整易懂的文档时，不能理解其中原理那么工作上面就要抓瞎了。这里也算是通过这次面">
+<meta name="twitter:title" content="Vue Router的用法实例">
+<meta name="twitter:description" content="这里，我先以的应用层面出发在使用上我们直接跳过安装步骤，但是介绍还是有必要提一下的：vue router是官方的路由管理器，它可以使得单页面应用变得易如反掌； 功能如下：  嵌套路由/视图表 模块化、基于组件的路由配置 路由参数、查询、通配符 基于vue过渡（transition）组件的视图过渡效果 细粒度的导航控制 带有自动激活的css class 的链接 html5历史模式或者hash模式，">
   
     <link rel="alternative" href="/atom.xml" title="Yzy的博客" type="application/atom+xml">
   
@@ -158,7 +158,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Vue Router的用法实例及其router内部的实现原理（第一章：主要用法）
+      Vue Router的用法实例
     </h1>
   
 
@@ -176,11 +176,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li>之所以要写这么一篇博客，主要有两个原因，一个是太长时间没有更新博客了，再一个是面试便利蜂的时候面试官问到了这个问题，此后我还会去好好读一下vue的源码，了解vue的内部是如何一步一步实现的。</li>
-<li>说个题外话，这里十分感谢便利蜂的面试官，非常耐心地告诉我不能单纯的停留在看api使用的层面上，若公司有了自己编写的独立框架且没有完整易懂的文档时，不能理解其中原理那么工作上面就要抓瞎了。这里也算是通过这次面试找到了新的学习方向和急需补足的地方；</li>
-</ul>
-<h2 id="这里，我先以的应用层面出发"><a href="#这里，我先以的应用层面出发" class="headerlink" title="这里，我先以的应用层面出发"></a>这里，我先以的应用层面出发</h2><h5 id="在使用上我们直接跳过安装步骤，但是介绍还是有必要提一下的："><a href="#在使用上我们直接跳过安装步骤，但是介绍还是有必要提一下的：" class="headerlink" title="在使用上我们直接跳过安装步骤，但是介绍还是有必要提一下的："></a>在使用上我们直接跳过安装步骤，但是介绍还是有必要提一下的：</h5><p>vue router是官方的路由管理器，它可以使得单页面应用变得易如反掌；</p>
+        <h2 id="这里，我先以的应用层面出发"><a href="#这里，我先以的应用层面出发" class="headerlink" title="这里，我先以的应用层面出发"></a>这里，我先以的应用层面出发</h2><h5 id="在使用上我们直接跳过安装步骤，但是介绍还是有必要提一下的："><a href="#在使用上我们直接跳过安装步骤，但是介绍还是有必要提一下的：" class="headerlink" title="在使用上我们直接跳过安装步骤，但是介绍还是有必要提一下的："></a>在使用上我们直接跳过安装步骤，但是介绍还是有必要提一下的：</h5><p>vue router是官方的路由管理器，它可以使得单页面应用变得易如反掌；</p>
 <p>功能如下：</p>
 <ul>
 <li>嵌套路由/视图表</li>
@@ -508,19 +504,15 @@
           <ul class="article-tag-list" q-show="showTags">
             
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Vue Router</a>
-              </li>
-            
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据请求</a>
               </li>
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">fetch</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -536,7 +528,7 @@
               </li>
             
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js - 基础</a>
+                <a href="javascript:void(0)" class="js-tag color1">Vue Router</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -545,6 +537,10 @@
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">git - 代码管理</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js - 基础</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -560,10 +556,6 @@
               </li>
             
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-            
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
               </li>
             
@@ -573,6 +565,10 @@
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">验证码</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
             
               <li class="article-tag-list-item">
